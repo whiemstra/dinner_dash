@@ -30,6 +30,8 @@ gem 'unicorn'
 # gem 'puma'
 gem 'skylight'
 
+gem 'paperclip'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

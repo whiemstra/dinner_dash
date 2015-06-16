@@ -3,6 +3,7 @@
 <% @items.each do |item| %>
   <li>
     <%= link_to item.title, item_path(item) %> <br>
+    <%= image_tag @item.image.url %> <br>
     <%= item.description %> <br>
     <%= item.price %>
 

@@ -1,0 +1,48 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      <ul class="nav navbar-nav">
+        <a class="navbar-brand" href="#">
+          <img alt="Brand" src="...">
+        </a>
+        <li><a href="#">Dinner Dash</a></li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <!--<li><a data-toggle="modal" href="#myModal">Login/Signup</a></li>-->
+        <li><a href="#">Sign Up</a></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
+
+          <div class="dropdown-menu" style="padding: 15px; padding-bottom: 15px;">
+
+            <form action="[YOUR ACTION]" method="post" accept-charset="UTF-8">
+              <input id="user_username" style="margin-bottom: 15px;" type="text" name="user[username]" placeholder="Username" size="30"/>
+              <input id="user_password" style="margin-bottom: 15px;" type="password" name="user[password]" placeholder="Password" size="30"/>
+              <input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Sign In"/>
+            </form>
+          </div>
+        </li>
+
+        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+          <span class="badge">3</span></a></li>
+      </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+  </div>
+  <!-- /.container-fluid -->
+</nav>
+

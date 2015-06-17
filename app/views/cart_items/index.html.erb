@@ -1,0 +1,9 @@
+<% @cart.contents.each do |item_id, quantity| %>
+    <li>
+      <% item = Item.find(item_id.to_i) %>
+      <%= link_to item.title, item_path(item) %> <br>
+      <%= image_tag item.image.url %> <br>
+      <%= item.description %> <br>
+      <%= to_dollars(item.price) %>
+    </li>
+<% end %>

@@ -6,17 +6,18 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 
-  <%= render partial: 'layouts/nav' %>
 </head>
+<body>
   <div class="container">
-    <body>
 
-  <div style="background-color: red; color: white;">
-    <%= flash[:error] %>
+    <%= render partial: 'layouts/nav' %>
+
+    <div style="background-color: red; color: white;">
+        <%= flash[:error] %>
+    </div>
+
+    <%= yield %>
+
   </div>
-
-<%= yield %>
-
-    </body>
-  </div>
+</body>
 </html>

@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   before_action :load_cart
 
   def load_cart
-    @cart = Cart.new(session[:cart])
+    @cart = Cart.new(session[:cart_items])
   end
 end

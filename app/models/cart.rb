@@ -18,4 +18,8 @@ class Cart
     contents[item_id.to_s]
   end
 
+  def items
+    contents
+  end
+
 end

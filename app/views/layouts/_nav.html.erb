@@ -17,7 +17,7 @@
         <a class="navbar-brand" href="/">
           <img alt="Brand" src="...">
         </a>
-        <li><a href="/">Dinner Dash</a></li>
+        <li><%= link_to 'Dinner Dash', root_path %></li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
@@ -36,9 +36,10 @@
             </form>
           </div>
         </li>
-
-        <li><a href="#"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-          <span class="badge">3</span></a></li>
+        <li>
+          <a id="cart" href="<%= cart_items_path %>"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+            <span class="badge"><%= @cart.total %></span></a>
+        </li>
       </ul>
     </div>
     <!-- /.navbar-collapse -->

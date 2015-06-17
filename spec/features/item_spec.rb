@@ -167,13 +167,13 @@ describe 'deleting an existing item', type: :feature do
 
 end
 
-describe 'cart item(s)', type: :feature do
+describe 'cart_items item(s)', type: :feature do
 
-  it 'can add an item to the cart'
+  it 'can add an item to the cart_items'
 
-  it 'can remove an item from the cart'
+  it 'can remove an item from the cart_items'
 
-  it 'can increase the quantity count of an item in the cart'
+  it 'can increase the quantity count of an item in the cart_items'
 
 end
 
@@ -182,6 +182,6 @@ describe 'retired items', type: :feature do
 
   it 'allows retired items to be viewed on items page and are marked/labeled as retired'
 
-  it 'blocks users from adding retired items to cart'
+  it 'blocks users from adding retired items to cart_items'
 end
 

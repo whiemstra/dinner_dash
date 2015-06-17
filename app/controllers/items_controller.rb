@@ -5,11 +5,15 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(params[:id])
+    find_item
   end
 
   def new
     @item = Item.new
+  end
+
+  def edit
+    find_item
   end
 
   def create
@@ -23,8 +27,16 @@ class ItemsController < ApplicationController
     end
   end
 
+  def update
+    find_item
+
+    if @item.update_attributes(item_params)
+      redirect_to @item
+    end
+  end
+
   def destroy
-    @item = Item.find(params[:id])
+    find_item
     @item.destroy
     redirect_to items_path, notice: 'Item was successfully deleted.'
   end
@@ -33,6 +45,10 @@ class ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(:title, :description, :price, :image)
+  end
+
+  def find_item
+    @item = Item.find(params[:id])
   end
 end
 

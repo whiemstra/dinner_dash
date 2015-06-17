@@ -18,8 +18,8 @@ class ItemsController < ApplicationController
     if @item.save
       redirect_to @item
     else
+      flash[:error] = 'Title, Description, and Price must be present.'
       render :new
-      #flash error
     end
   end
 

@@ -1,5 +1,46 @@
 require 'rails_helper'
 
+describe 'creating a new item', type: :feature do
+
+  it 'has a link from the index page to add a new item' do
+    visit items_path
+    expect(page).to have_link('Add New Item', href: new_item_path)
+  end
+
+  it 'lets me create a new item' do
+
+    visit new_item_path
+    fill_in('Title', with: "Fried Oreos")
+    fill_in('Description', with: "Literally fried Oreos")
+    fill_in('Price', with: 3 )
+    click_on "Create New Item"
+
+    expect(current_path).to eq(item_path(Item.last))
+    expect(page).to have_text("Fried Oreos")
+  end
+
+  it 'errors if title, description, or price are blank' do
+    visit new_item_path
+    expect(page).to have_text('Creating a New Item')
+
+    fill_in('Description', with: 'my new item')
+    click_on('Create New Item')
+
+    expect(page).to have_text('Creating a New Item')
+    expect(page).to have_text('Title, Description, and Price must be present')
+
+    fill_in('Title', with: 'Brand New Fabulous Item')
+    fill_in('Description', with: 'my new item')
+    click_on('Create New Item')
+
+    expect(page).to have_text('Creating a New Item')
+    expect(page).to have_text('Title, Description, and Price must be present')
+
+  end
+
+end
+
+
 describe 'view an item', type: :feature do
 
   before(:each) do
@@ -23,21 +64,7 @@ describe 'view an item', type: :feature do
 
 end
 
-describe 'creating a new item', type: :feature do
 
-  it 'lets me create a new item' do
-
-    visit new_item_path
-    fill_in('Title', with: "Fried Oreos")
-    fill_in('Description', with: "Literally fried Oreos")
-    fill_in('Price', with: 3 )
-    click_on "Create New Item"
-
-    expect(current_path).to eq(item_path(Item.last))
-    expect(page).to have_text("Fried Oreos")
-  end
-
-end
 
 describe 'deleting an item', type: :feature do
 

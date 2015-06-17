@@ -1,11 +1,13 @@
 class ItemsController < ApplicationController
+  include ApplicationHelper
+
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   def index
     @items = Item.all
   end
 
   def show
-    find_item
   end
 
   def new
@@ -13,7 +15,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    find_item
   end
 
   def create
@@ -28,15 +29,12 @@ class ItemsController < ApplicationController
   end
 
   def update
-    find_item
-
     if @item.update_attributes(item_params)
       redirect_to @item, notice: 'Item was successfully updated.'
     end
   end
 
   def destroy
-    find_item
     @item.destroy
     redirect_to items_path, notice: 'Item was successfully deleted.'
   end
@@ -47,7 +45,7 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:title, :description, :price, :image)
   end
 
-  def find_item
+  def set_item
     @item = Item.find(params[:id])
   end
 end

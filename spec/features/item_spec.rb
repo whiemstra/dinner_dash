@@ -55,8 +55,16 @@ describe 'creating a new item', type: :feature do
   end
 
 
+  it 'has a price with a decimal numeric value' do
+    visit new_item_path
+    fill_in('Title', with: "Item Title")
+    fill_in('Description', with: "description of title")
+    fill_in('Price', with: 350 )
+    click_on "Create New Item"
 
-  it 'has a price with a decimal numeric value'
+    expect(current_path).to eq(item_path(Item.last))
+    expect(page).to have_text('$3.50')
+  end
 
   it 'must have a price greater than zero in order to be valid'
 

@@ -3,7 +3,7 @@ class Item < ActiveRecord::Base
     uniqueness: true
   validates_presence_of :description, :price
 
-  #validates :price, numericality: { only_integer: true, greater_than: 0 }
+  validates :price, numericality: { only_integer: true, greater_than: 0 }
 
   has_many :item_categories
   has_many :categories, through: :item_categories

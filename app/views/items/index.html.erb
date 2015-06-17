@@ -24,7 +24,7 @@
           <p><%= item.description %></p>
 
           <p>
-            <%= button_to "Add to Cart", new_item_path, class: "btn btn-success" %><%= item.price %>
+            <%= button_to "Add to Cart", new_item_path, class: "btn btn-success" %><%= to_dollars(item.price) %>
           </p>
         </div>
       </div>

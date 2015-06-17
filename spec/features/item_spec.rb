@@ -37,6 +37,24 @@ describe 'creating a new item', type: :feature do
     expect(page).to have_text("Fried Oreos")
   end
 
+end
+
+describe 'deleting an item', type: :feature do
+
+  before(:each) do
+    @item1 = Item.create(title: "Food", description: "fatty food", price: 10)
+    @item2 = Item.create(title: "Drink", description: "wine", price: 10)
+    @item3 = Item.create(title: "Alcohol", description: "beer", price: 10)
+  end
+
+  it 'allows an item to be deleted' do
+
+    visit item_path(@item2)
+    click_on "Delete Item"
+
+    expect(current_path).to eq(items_path)
+    expect(page).not_to have_text("Drink")
+  end
 
 end
 

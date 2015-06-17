@@ -1,7 +1,11 @@
-class ItemsController <ApplicationController
+class ItemsController < ApplicationController
 
   def index
     @items = Item.all
+  end
+
+  def show
+    @item = Item.find(params[:id])
   end
 
   def new
@@ -19,8 +23,10 @@ class ItemsController <ApplicationController
     end
   end
 
-  def show
+  def destroy
     @item = Item.find(params[:id])
+    @item.destroy
+    redirect_to items_path, notice: 'Item was successfully deleted.'
   end
 
   private

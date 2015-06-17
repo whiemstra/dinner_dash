@@ -1,5 +1,3 @@
-<h1> All Items </h1>
-
 <ul>
   <% @categories.each do |category| %>
     <li>
@@ -8,12 +6,12 @@
   <% end %>
 </ul>
 
-<% @items.each do |item| %>
+<% @category.items.each do |item| %>
   <li>
     <%= link_to item.title, item_path(item) %> <br>
     <%= image_tag item.image.url %> <br>
     <%= item.description %> <br>
     <%= item.price %>
-
   </li>
 <% end %>
+

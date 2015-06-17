@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'categories#index'
+  root 'items#index'
   resources :items
-  resources :categories
+  resources :categories, only: [:show]
 end

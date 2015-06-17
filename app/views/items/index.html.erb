@@ -1,4 +1,3 @@
-
 <h1>All Items</h1>
 
 <ul>
@@ -8,6 +7,11 @@
     </li>
   <% end %>
 </ul>
+
+
+<%= link_to "Add New Item", new_item_path %>
+
+
 
 <div class="row text-center">
   <% @items.each do |item| %>

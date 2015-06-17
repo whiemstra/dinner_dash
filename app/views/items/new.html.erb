@@ -1,4 +1,13 @@
+<h1> Creating a New Item </h1>
+
+
 <%= form_for(@item, html: {multipart: true}) do |f| %>
+  <ul class="errors">
+    <% f.object.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+
   <%= f.label :title %>
   <%= f.text_field :title %><br>
 

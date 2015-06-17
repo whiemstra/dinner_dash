@@ -11,7 +11,11 @@
   <div class="container">
     <body>
 
-    <%= yield %>
+  <div style="background-color: red; color: white;">
+    <%= flash[:error] %>
+  </div>
+
+<%= yield %>
 
     </body>
   </div>

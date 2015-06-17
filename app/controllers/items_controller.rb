@@ -20,9 +20,9 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
 
     if @item.save
-      redirect_to @item
+      redirect_to @item, notice: 'Item was successfully created.'
     else
-      flash[:error] = 'Title, Description, and Price must be present.'
+      # flash[:error] = 'Title, Description, and Price must be present.'
       render :new
     end
   end
@@ -31,7 +31,7 @@ class ItemsController < ApplicationController
     find_item
 
     if @item.update_attributes(item_params)
-      redirect_to @item
+      redirect_to @item, notice: 'Item was successfully updated.'
     end
   end
 

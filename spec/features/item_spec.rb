@@ -10,7 +10,6 @@ describe 'creating a new item', type: :feature do
   end
 
   it 'lets me create a new item' do
-
     visit new_item_path
     fill_in('Title', with: "Fried Oreos")
     fill_in('Description', with: "Literally fried Oreos")
@@ -29,17 +28,33 @@ describe 'creating a new item', type: :feature do
     click_on('Create New Item')
 
     expect(page).to have_text('Creating a New Item')
-    expect(page).to have_text('Title, Description, and Price must be present')
+    expect(page).to have_text("Title can't be blank")
+    expect(page).to have_text("Price can't be blank")
+
 
     fill_in('Title', with: 'Brand New Fabulous Item')
-    fill_in('Description', with: 'my new item')
     click_on('Create New Item')
 
     expect(page).to have_text('Creating a New Item')
-    expect(page).to have_text('Title, Description, and Price must be present')
+    expect(page).to have_text("Price can't be blank")
   end
 
-  it 'must have a unique title for all items, errors is title is repeated'
+  it 'must have a unique title for all items; errors if title is repeated' do
+    @item = Item.create(title: "Item #1", description: "Description of Item", price: 18)
+
+    visit items_path
+    expect(page).to have_text('Item #1')
+
+    visit new_item_path
+    fill_in('Title', with: "Item #1")
+    fill_in('Description', with: "A more slammin' description")
+    fill_in('Price', with: 3 )
+    click_on "Create New Item"
+
+    expect(page).to have_text("Title has already been taken")
+  end
+
+
 
   it 'has a price with a decimal numeric value'
 
@@ -111,6 +126,11 @@ describe 'editing an existing item', type: :feature do
     visit items_path(existing_item)
     expect(page).to have_link('Edit', href: edit_item_path(existing_item))
   end
+
+  it 'blocks a unauthenticated admin user from editing an item'
+
+  it 'allows an authenticated admin user to edit an item'
+
 end
 
 
@@ -130,6 +150,12 @@ describe 'deleting an existing item', type: :feature do
     expect(current_path).to eq(items_path)
     expect(page).not_to have_text("Drink")
   end
+
+  it 'blocks a regular user from deleting an item'
+
+  it 'blocks a unauthenticated admin user from deleting an item'
+
+  it 'allows an authenticated admin user to delete an item'
 
 end
 

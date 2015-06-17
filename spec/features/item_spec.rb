@@ -37,9 +37,15 @@ describe 'creating a new item', type: :feature do
 
     expect(page).to have_text('Creating a New Item')
     expect(page).to have_text('Title, Description, and Price must be present')
-
   end
 
+  it 'must have a unique title for all items, errors is title is repeated'
+
+  it 'has a price with a decimal numeric value'
+
+  it 'must have a price greater than zero in order to be valid'
+
+  it 'has a default photo if one is not given, no errors'
 end
 
 describe 'view an item', type: :feature do

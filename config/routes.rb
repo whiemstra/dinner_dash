@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   resources :items
   resources :categories, only: [:show]
   resources :cart_items, only: [:create, :index]
+  resources :users
 
 end

@@ -66,9 +66,43 @@ describe 'creating a new item', type: :feature do
     expect(page).to have_text('$35.00')
   end
 
-  it 'must have a price greater than zero in order to be valid'
+  it 'must have a price greater than zero in order to be valid' do
+    visit new_item_path
+    fill_in('Title', with: "Item Title")
+    fill_in('Description', with: "description of title")
+    fill_in('Price', with: 0 )
+    click_on "Create New Item"
 
-  it 'has a default photo if one is not given, no errors'
+    expect(page).to have_text('Price must be greater than 0')
+  end
+
+  it 'errors when entered price has letters or symbols in it' do
+    visit new_item_path
+    fill_in('Title', with: "Item Title")
+    fill_in('Description', with: "description of title")
+    fill_in('Price', with: '86j0')
+    click_on "Create New Item"
+
+    expect(page).to have_text('Price is not a number')
+
+    fill_in('Price', with: '!&$%' )
+    click_on "Create New Item"
+
+    expect(page).to have_text('Price is not a number')
+  end
+
+  it 'can have a price greater than 0, but less than 1 dollar'  #we need to do??
+
+  xit 'has a default photo if one is not given, no errors' do
+    visit new_item_path
+    fill_in('Title', with: "Item Title")
+    fill_in('Description', with: "description of title")
+    fill_in('Price', with: 58 )
+    click_on "Create New Item"
+
+    expect(page).to have_text('$35.00')
+  end
+
 end
 
 describe 'view an item', type: :feature do

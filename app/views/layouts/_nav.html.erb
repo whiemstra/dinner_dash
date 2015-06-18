@@ -23,7 +23,8 @@
       <ul class="nav navbar-nav navbar-right">
 
         <!--<li><a data-toggle="modal" href="#myModal">Login/Signup</a></li>-->
-        <li><a href="#">Sign Up</a></li>
+        <!--<li><a href="#">Sign Up</a></li>-->
+        <li><%= link_to "Signup", new_user_path %></li>
         <li class="dropdown">
           <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In <strong class="caret"></strong></a>
 
@@ -48,3 +49,4 @@
 </nav>
 
 <%= flash[:notice] %>
+<%= flash[:error] %>

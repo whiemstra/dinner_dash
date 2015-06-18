@@ -15,7 +15,6 @@ class UsersController < ApplicationController
     end
   end
 
-
   private
   def user_params
     params.require(:user).permit(:full_name, :display_name, :email, :password)  #display name is optional

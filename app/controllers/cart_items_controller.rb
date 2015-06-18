@@ -19,4 +19,14 @@ class CartItemsController < ApplicationController
     flash[:success] = "You have removed #{item.title} from your cart."
     redirect_to cart_items_path
   end
+
+  def increase
+    @cart.increase_quantity(params[:item_id])
+    redirect_to cart_items_path
+  end
+
+  def decrease
+    @cart.decrease_quantity(params[:item_id])
+    redirect_to cart_items_path
+  end
 end

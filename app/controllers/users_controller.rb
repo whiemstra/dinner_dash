@@ -7,7 +7,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params) # -- create private user_params method
     if @user.save
+      log_in @user
       session[:user_id] = @user.id # -- had created a user, we're now taking their id and storing it in the session
+      flash[:success] = "Hello, #{@user.display_name}!"
       redirect_to items_path # -- could do: user_path(user), but system defaults to show, so user would work
     else
       flash.now[:error] = @user.errors.full_messages.join(", ")

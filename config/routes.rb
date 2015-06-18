@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   root 'items#index'
   resources :items
   resources :categories, only: [:show]
@@ -6,8 +8,9 @@ Rails.application.routes.draw do
   resources :users
 
   get '/login', to: 'sessions#new'
-  #post '/login', to: 'sessions#create'
-  #delete '/logout', to: 'sessions#destroy'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
   post 'cart_items/increase', to: 'cart_items#increase'
   post 'cart_items/decrease', to: 'cart_items#decrease'
+
 end

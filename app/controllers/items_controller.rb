@@ -23,7 +23,8 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
 
     if @item.save
-      redirect_to @item, notice: 'Item was successfully created.'
+      flash[:success] = 'Item was successfully created.'
+      redirect_to @item
     else
       # flash[:error] = 'Title, Description, and Price must be present.'
       render :new
@@ -32,13 +33,15 @@ class ItemsController < ApplicationController
 
   def update
     if @item.update_attributes(item_params)
-      redirect_to @item, notice: 'Item was successfully updated.'
+      flash[:success] = "Item was successfully updated."
+      redirect_to @item
     end
   end
 
   def destroy
     @item.destroy
-    redirect_to items_path, notice: 'Item was successfully deleted.'
+    flash[:success] = "Item was successfully deleted."
+    redirect_to items_path
   end
 
   private

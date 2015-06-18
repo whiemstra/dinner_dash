@@ -102,27 +102,36 @@ end
 
 describe 'user log in', type: :feature do
 
-  it 'has a link on the home page that links to a sign up form'
+  before(:each) do
+    @user = User.create(full_name: "Tom Petty",
+                        email: "petty@gmail.com",
+                        password: "freefallin")
+  end
 
-    # xit "can log   in an existing user" do
-  #   user = User.create(username: "whit", password: "hello123")
-  #
-  #   visit login_path
-  #
-  #   fill_in "Username", with: user.username
-  #   fill_in "Password", with: "hello123"
-  #   click_button "Login"
-  #
-  #   expect(page).to have_content("Welcome, whitney")
-  #
-  # end
+  xit 'has a link on the home page that links to a sign up form' do
+    visit items_path
+    expect(page).to have_link('Sign In', login_path)
+
+    click_link "Sign In"
+    expect(page).to have_text('Login')
+  end
+
+  xit "can log in an existing user" do
+    visit login_path
+
+    fill_in "Full Name", with: @user.full_name
+    fill_in "Password", with: "freefallin"
+    click_button "Login"
+
+    expect(page).to have_content("Welcome, Tom Petty")
+  end
 
 
   xit 'sends people to the login page if not logged in'
-  xit 'redirects to the categories page after logging in'
-  xit 'errors if username does not exist'
-  xit 'errors if username exists but password is wrong'
-  xit 'errors if username and password are blank'
+  xit 'redirects to the items page after logging in'
+  xit 'errors if fullname does not exist'
+  xit 'errors if fullname exists but password is wrong'
+  xit 'errors if fullname and password are blank'
 end
 
 describe 'user log out', type: :feature do

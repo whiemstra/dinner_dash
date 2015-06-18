@@ -28,7 +28,6 @@ describe 'unauthenticated user', type: :feature do
 
     expect(current_path).to eq(cart_items_path)
     expect(page).to have_text('Item #1')
-    expect(page).to have_text('Description of Item')
     expect(page).to have_text('$18.00')
   end
 

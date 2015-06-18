@@ -1,9 +1,19 @@
-<% @cart.contents.each do |item_id, quantity| %>
-    <li>
+<table class="table table-hover table-bordered">
+  <th>Item</th>
+  <th>Price</th>
+  <th>Quantity</th>
+  <th></th>
+  <% @cart.contents.each do |item_id, quantity| %>
+    <tr>
       <% item = Item.find(item_id.to_i) %>
-      <%= link_to item.title, item_path(item) %> <br>
-      <%= image_tag item.image.url %> <br>
-      <%= item.description %> <br>
-      <%= to_dollars(item.price) %>
-    </li>
-<% end %>
+      <td><%= link_to item.title, item_path(item) %></td>
+      <td><%= to_dollars(item.price) %></td>
+      <td><%= quantity %><br>
+        <%= button_to "Update", cart_item_path(item), method: :update %>
+      </td>
+      <td><%= button_to "Remove", cart_item_path(item, @cart), method: :delete  %></td>
+    </tr>
+  <% end %>
+
+</table>
+

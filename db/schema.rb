@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150618182041) do
+ActiveRecord::Schema.define(version: 20150619022924) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 20150618182041) do
 
   add_index "item_categories", ["category_id"], name: "index_item_categories_on_category_id", using: :btree
   add_index "item_categories", ["item_id"], name: "index_item_categories_on_item_id", using: :btree
+
+  create_table "item_orders", force: :cascade do |t|
+    t.integer  "item_id"
+    t.integer  "order_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "item_orders", ["item_id"], name: "index_item_orders_on_item_id", using: :btree
+  add_index "item_orders", ["order_id"], name: "index_item_orders_on_order_id", using: :btree
 
   create_table "items", force: :cascade do |t|
     t.string   "title"
@@ -57,10 +67,13 @@ ActiveRecord::Schema.define(version: 20150618182041) do
     t.string   "display_name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.integer  "role",            default: 0
   end
 
   add_foreign_key "item_categories", "categories"
   add_foreign_key "item_categories", "items"
+  add_foreign_key "item_orders", "items"
+  add_foreign_key "item_orders", "orders"
 end

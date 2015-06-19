@@ -3,4 +3,5 @@ class User < ActiveRecord::Base
   validates :full_name, presence: true
   validates :email, presence: true, uniqueness: true
   validates :display_name, uniqueness: true
+  enum role: %w(default, admin)
 end

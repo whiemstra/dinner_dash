@@ -8,7 +8,11 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       log_in user
       flash[:success] = "Hello, #{user.display_name}!"
-      redirect_to items_path
+      if user.admin?
+        redirect_to admin_path
+      else
+        redirect_to items_path
+      end
     else
       flash[:danger] = 'Invalid email/password combination' # Not quite right!
       render 'new'

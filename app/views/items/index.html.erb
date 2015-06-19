@@ -1,16 +1,15 @@
-<h1>All Items</h1>
-
-
-<ul>
+<ul class="nav nav-pills">
+  <li> <%= link_to "All Items", root_path %></li>
   <% @categories.each do |category| %>
-    <li>
-      <%= link_to category.title, category_path(category) %>
-    </li>
+      <li>
+        <%= link_to category.title, category_path(category) %>
+      </li>
   <% end %>
 </ul>
 
 
 <%= link_to "Add New Item", new_item_path %>
+
 
 <div class="row text-center">
   <% @items.each do |item| %>

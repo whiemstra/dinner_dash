@@ -1,17 +1,29 @@
-<ul>
+<ul class="nav nav-pills">
+  <li> <%= link_to "All Items", root_path %></li>
   <% @categories.each do |category| %>
-    <li>
-      <%= link_to category.title, category_path(category) %>
-    </li>
+      <li>
+        <%= link_to category.title, category_path(category) %>
+      </li>
   <% end %>
 </ul>
 
-<% @category.items.each do |item| %>
-  <li>
-    <%= link_to item.title, item_path(item) %> <br>
-    <%= image_tag item.image.url %> <br>
-    <%= item.description %> <br>
-    <%= item.price %>
-  </li>
-<% end %>
+<div class="row text-center">
+  <% @category.items.each do |item| %>
+      <div class="col-md-3 col-sm-6">
+        <div class="thumbnail">
+          <%= image_tag item.image.url %>
+          <div class="caption">
+            <h3><%= link_to item.title, item_path(item) %></h3>
+
+            <p><%= item.description %></p>
+
+            <p>
+              <%= button_to "Add to Cart", cart_items_path(item_id: item.id), class: "btn btn-success" %><%= to_dollars(item.price) %>
+            </p>
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+</div>
 

@@ -27,21 +27,28 @@
         <% if logged_in? %>
         <li><%= link_to "Log out", logout_path, method: "delete" %></li>
         <% else %>
-        <li><%= link_to "Signup", new_user_path %></li>
-        <li><%= link_to "Login", login_path %></li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign
+            Up/Login<strong class="caret"></strong></a>
+
+          <div class="dropdown-menu" style="padding: 15px;">
+
+            <%= form_for(:session, url: login_path) do |f| %>
+
+                <%= f.label :email %>
+                <%= f.email_field :email, class: 'form-control' %>
+
+                <%= f.label :password %>
+                <%= f.password_field :password, class: 'form-control' %>
+                <br>
+                <%= f.submit "Login", class: "btn btn-primary" %>
             <% end %>
-        <!--<li class="dropdown">-->
-          <!--<a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign In<strong class="caret"></strong></a>-->
 
-          <!--<div class="dropdown-menu" style="padding: 15px; padding-bottom: 15px;">-->
+            <p>New user? <%= link_to "Sign up now!", new_user_path %></p>
 
-            <!--<form action="[YOUR ACTION]" method="post" accept-charset="UTF-8">-->
-              <!--<input id="user_username" style="margin-bottom: 15px;" type="text" name="user[username]" placeholder="Email Address" size="30"/>-->
-              <!--<input id="user_password" style="margin-bottom: 15px;" type="password" name="user[password]" placeholder="Password" size="30"/>-->
-              <!--<input class="btn btn-primary" style="clear: left; width: 100%; height: 32px; font-size: 13px;" type="submit" name="commit" value="Login"/>-->
-            <!--</form>-->
-          <!--</div>-->
-        <!--</li>-->
+          </div>
+        </li>
+            <% end %>
         <li>
           <a id="cart" href="<%= cart_items_path %>"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
             <span class="badge"><%= @cart.total %></span></a>

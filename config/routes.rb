@@ -35,5 +35,4 @@ Rails.application.routes.draw do
   get "admin/orders/status", to: "admin/orders#status"
   post "admin/order/update", to: "admin/orders#update"
 
-
 end

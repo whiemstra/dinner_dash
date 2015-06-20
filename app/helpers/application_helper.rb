@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def to_dollars(price)
-    number_to_currency(price)
+    number_to_currency(price.to_f / 100.00)
   end
 
   # TODO need to work on if we want cents

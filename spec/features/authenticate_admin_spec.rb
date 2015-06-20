@@ -18,7 +18,6 @@ describe 'authenticated admin user', type: :feature do
 
     expect(page).to have_content("Admin Dashboard")
     expect(current_path).to eq(admin_path)
-
   end
 end
 

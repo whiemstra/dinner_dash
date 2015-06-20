@@ -10,6 +10,10 @@ class Cart
     contents[item_id.to_s] += 1
   end
 
+  def total_items
+    contents.values.sum
+  end
+
   def count_of(item_id)
     contents[item_id.to_s]
   end
@@ -51,7 +55,7 @@ class Cart
     end
   end
 
-  def clear
+  def clear_cart
     contents.clear
   end
 

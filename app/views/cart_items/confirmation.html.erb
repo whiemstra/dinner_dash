@@ -18,9 +18,9 @@
     <tfoot>
     <tr>
       <td>Total</td>
+      <td></td>
+      <td><%= @cart.total_items %></td>
       <td><%= number_to_currency(@cart.total.to_f / 100.00) %></td>
-      <td></td>
-      <td></td>
     </tr>
     </tfoot>
   </table>

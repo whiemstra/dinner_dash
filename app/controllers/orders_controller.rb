@@ -12,7 +12,7 @@ class OrdersController < ApplicationController
       flash[:error] = "Please Try Again."
       redirect_to checkout_path
     end
-    @cart.clear
+    @cart.clear_cart
   end
 
   # def payment

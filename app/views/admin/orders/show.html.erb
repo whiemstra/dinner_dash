@@ -13,7 +13,7 @@
       <td>Item Price</td>
       <td>Item Subtotal</td>
     </tr>
-    <% @order.order_items.each do |order_item| %>
+    <% @order.item_orders.each do |order_item| %>
       <tr>
         <td><%=link_to order_item.item.title, item_path(order_item.item) %></td>
         <td><%= order_item.quantity %></td>
@@ -26,12 +26,4 @@
     </tr>
   </table><br><br>
 
-  <p>
-    Change Order's Status:
-  </p>
-  <!--<ul>-->
-    <!--<li><%= link_to "Paid", admin_order_update_path({order_id: @order.id, status: "paid"}), method: :post %></li>-->
-    <!--<li><%= link_to "Completed", admin_order_update_path({order_id: @order.id, status: "completed"}), method: "post" %></li>-->
-    <!--<li><%= link_to "Cancelled", admin_order_update_path({order_id: @order.id, status: "cancelled"}), method: "post" %></li>-->
-  <!--</ul>-->
 </div>

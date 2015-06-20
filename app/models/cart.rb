@@ -10,10 +10,6 @@ class Cart
     contents[item_id.to_s] += 1
   end
 
-  def total
-    contents.values.sum
-  end
-
   def count_of(item_id)
     contents[item_id.to_s]
   end
@@ -43,6 +39,10 @@ class Cart
     find_items.each_with_object({}) do |item, hash|
       hash[item.id] = count_of(item.id.to_s) * item.price
     end
+  end
+
+  def total
+    subtotal.values.sum
   end
 
   def create_item_orders(order_id)

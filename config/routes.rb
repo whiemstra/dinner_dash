@@ -24,5 +24,8 @@ Rails.application.routes.draw do
   get "cart_item/confirmation", to: "cart_items#confirmation"
   get "order/payment", to: "orders#payment"
 
+  get "admin/order", to: "admin/orders#show"
+  get "admin/orders/status", to: "admin/orders#status"
+  post "admin/order/update", to: "admin/orders#update"
 
 end

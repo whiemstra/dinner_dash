@@ -11,15 +11,15 @@ class Order < ActiveRecord::Base
 
   default_scope { order(created_at: :desc)}
 
-  def self.number_currently_ordered
+  def self.number_ordered
     ordered.count
   end
 
-  def self.number_currently_completed
+  def self.number_completed
     completed.count
   end
 
-  def self.number_currently_cancelled
+  def self.number_cancelled
     cancelled.count
   end
 
@@ -27,7 +27,7 @@ class Order < ActiveRecord::Base
     subtotal
   end
 
-  def show_status
+  def order_status
     if status == "ordered"
       status
     else

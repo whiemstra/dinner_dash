@@ -29,4 +29,13 @@ class CartItemsController < ApplicationController
     @cart.decrease_quantity(params[:item_id])
     redirect_to cart_items_path
   end
+
+  def confirmation
+    @items = @cart.find_valid_items
+    @item_quantities = @cart.contents
+    if @items.empty?
+      flash[:errors] = "Silly Shopper...There was nothing in your cart to purchase."
+      redirect_to items_path
+    end
+  end
 end

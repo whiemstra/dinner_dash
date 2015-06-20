@@ -1,0 +1,26 @@
+<div class="confirmation">
+  <h2>Confirm Your Order</h2>
+  <table class="table table-hover table-bordered" >
+    <th>Item</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Subtotal</th>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item.title %></td>
+        <td><%= number_to_currency(item.price.to_f / 100.00) %></td>
+        <td><%= @cart.count_of(item.id.to_s) %></td>
+        <td><%= number_to_currency(@cart.subtotal[item.id].to_f / 100.00) %></td>
+      </tr>
+    <% end %>
+    <tfoot>
+    <tr>
+      <td>Total</td>
+      <td></td>
+      <td><%= @cart.total_items %></td>
+      <td><%= number_to_currency(@cart.total.to_f / 100.00) %></td>
+    </tr>
+    </tfoot>
+  </table>
+  <%= button_to "Confirm Order", orders_path(order: { user_id: current_user.id, subtotal: @cart.total })%>
+</div>

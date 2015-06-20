@@ -5,14 +5,22 @@
   <th></th>
   <% @cart.contents.each do |item_id, quantity| %>
     <tr>
-      <% item = Item.find(item_id.to_i) %>
+      <% item = Item.find(item_id) %>
       <td><%= link_to item.title, item_path(item) %></td>
       <td><%= to_dollars(item.price) %></td>
-      <td> <%= button_to "-", cart_items_decrease_path(item_id: item.id), class: "btn btn-danger" %> <%= quantity %> <%=button_to "+", cart_items_increase_path(item_id: item.id), class: "btn btn-success" %>
+      <td>
+        <%= button_to "-", cart_items_decrease_path(item_id: item.id), class: "btn btn-danger" %>
+        <%= quantity %>
+        <%=button_to "+", cart_items_increase_path(item_id: item.id), class: "btn btn-success" %>
       </td>
       <td><%= button_to "Remove", cart_item_path(item, @cart), method: :delete  %></td>
     </tr>
   <% end %>
-
 </table>
+
+<% if current_user %>
+  <%= button_to "Checkout", cart_item_confirmation_path, method: :get %>
+<% else %>
+  <%= button_to "Checkout", new_user_path(origin: {destination: "checkout"}), method: :get %>
+<% end %>
 

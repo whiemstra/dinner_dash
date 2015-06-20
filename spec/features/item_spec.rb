@@ -59,7 +59,7 @@ describe 'creating a new item', type: :feature do
     visit new_item_path
     fill_in('Title', with: "Item Title")
     fill_in('Description', with: "description of title")
-    fill_in('Price', with: 35 )
+    fill_in('Price', with: 3500 )
     click_on "Create New Item"
 
     expect(current_path).to eq(item_path(Item.last))

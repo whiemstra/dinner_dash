@@ -104,6 +104,7 @@ describe 'user log in', type: :feature do
 
   before(:each) do
     @user = User.create(full_name: "Tom Petty",
+                        display_name: 'Tom',
                         email: "petty@gmail.com",
                         password: "freefallin")
   end
@@ -116,14 +117,17 @@ describe 'user log in', type: :feature do
     expect(page).to have_text('Login')
   end
 
-  xit "can log in an existing user" do
-    visit login_path
+  it "can log in an existing user" do
+    visit root_path
 
-    fill_in "Full Name", with: @user.full_name
+    click_on("Toggle navigation")
+    find('.dropdown-menu').click
+
+    fill_in "Email", with: @user.email
     fill_in "Password", with: "freefallin"
     click_button "Login"
 
-    expect(page).to have_content("Welcome, Tom Petty")
+    expect(page).to have_content("Hello, Tom")
   end
 
 

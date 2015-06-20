@@ -31,20 +31,16 @@ class Order < ActiveRecord::Base
     if status == "ordered"
       status
     else
-      "#{status} -  updated on: #{self.updated_at.strftime("%A, %d %b %Y %l:%M %p")}"
+      "#{status} -  updated on: #{self.updated_at.strftime("%b %e %Y %l:%M %p")}"
     end
   end
 
-  def date_of_order(order_created_at)
-    order_created_at.strftime("%A, %d %b %Y %l:%M %p")
-  end
-
   def date_created
-    created_at.strftime(" %d %b %Y %l:%M %p")
+    created_at.strftime("%b %e %Y %l:%M %p")
   end
 
   def date_updated
-    updated_at.strftime(" %d %b %Y %l:%M %p")
+    updated_at.strftime("%b %e %Y %l:%M %p")
   end
 
 end

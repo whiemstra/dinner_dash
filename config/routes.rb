@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
 
   root 'items#index'
-  resources :items#, only: [:index, :show]
+  resources :items, only: [:index, :show]
   resources :categories, only: [:show]
   resources :cart_items, only: [:create, :index, :update, :destroy]
   resources :users
@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     get '/', to: 'dashboard#index'
     resources :items
     resources :categories
+    resources :item_categories
     # resources :orders
   end
 

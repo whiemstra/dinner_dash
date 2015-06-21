@@ -25,7 +25,12 @@
         <!--<li><a data-toggle="modal" href="#myModal">Login/Signup</a></li>-->
         <!--<li><a href="#">Sign Up</a></li>-->
         <% if logged_in? %>
-        <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+            <% if admin_user %>
+                <li><%= link_to "Admin Dashboard", admin_path %></li>
+                <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+            <% else %>
+                <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+            <% end %>
         <% else %>
         <li class="dropdown">
           <a class="dropdown-toggle" href="#" data-toggle="dropdown">Sign

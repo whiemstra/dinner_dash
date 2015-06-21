@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       session[:user_id] = @user.id # -- had created a user, we're now taking their id and storing it in the session
-      flash[:success] = "Hello, #{@user.display_name}!"
+      name_displayed
       redirect_to items_path # -- could do: user_path(user), but system defaults to show, so user would work
     else
       flash.now[:error] = @user.errors.full_messages.join(", ")
@@ -20,5 +20,13 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:full_name, :display_name, :email, :password)  #display name is optional
+  end
+
+  def name_displayed
+    if @user.display_name.present?
+      flash[:success] = "Hello, #{@user.display_name}!"
+    else
+      flash[:success] = "Hello, #{@user.full_name}!"
+    end
   end
 end

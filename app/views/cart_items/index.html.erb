@@ -3,6 +3,7 @@
   <th>Price</th>
   <th>Quantity</th>
   <th></th>
+  <th>Subtotal</th>
   <% @cart.contents.each do |item_id, quantity| %>
     <tr>
       <% item = Item.find(item_id) %>
@@ -14,8 +15,16 @@
         <%=button_to "+", cart_items_increase_path(item_id: item.id), class: "btn btn-success" %>
       </td>
       <td><%= button_to "Remove", cart_item_path(item, @cart), method: :delete  %></td>
+      <td><%= to_dollars(item.price * quantity) %></td>
     </tr>
   <% end %>
+  <tr>
+    <td><b>Order Total</b></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td><b><%= to_dollars(@cart.total) %> </b></td>
+  </tr>
 </table>
 
 <% if current_user %>

@@ -1,5 +1,7 @@
 <div class="admin_order_show">
 
+  <h3><%= link_to "< Back to Dashboard", admin_path %></h3>
+
   <h1>Order Information</h1>
 
   <h3>Purchaser: <%= @order.user.full_name %> - email: <%= @order.user.email %></h3>

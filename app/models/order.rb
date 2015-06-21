@@ -15,6 +15,10 @@ class Order < ActiveRecord::Base
     ordered.count
   end
 
+  def self.number_paid
+    paid.count
+  end
+
   def self.number_completed
     completed.count
   end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'admin categories', type: :feature do
+describe 'admin', type: :feature do
 
   before(:each) do
     User.create(full_name: "vanessa", display_name: "admin", email: "admin@email.com", role: 1, password: "dinnerdash")

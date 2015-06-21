@@ -34,4 +34,16 @@ describe 'admin categories', type: :feature do
     expect(page).to have_content('Category 5')
     expect(current_path).to eq(admin_categories_path)
   end
+
+
+  it 'deletes a category' do
+    page.click_on 'Categories'
+    find('.create-category').click
+    page.fill_in('Title', with: 'Category 1')
+    page.click_button('Create Category')
+
+    click_link "Delete"
+    expect(page).to_not have_content('Category 1')
+    expect(current_path).to eq(admin_categories_path)
+  end
 end

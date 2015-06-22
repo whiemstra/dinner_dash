@@ -20,7 +20,7 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = Item.new_plus_categories(item_params)
 
     if @item.save
       flash[:success] = 'Item was successfully created.'
@@ -41,13 +41,13 @@ class Admin::ItemsController < Admin::BaseController
   def destroy
     @item.destroy
     flash[:success] = "Item was successfully deleted."
-    redirect_to admin_items_path
+    redirect_to items_path
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:title, :description, :price, :image)
+    params.require(:item).permit(:title, :description, :price, :image, :categories => [])
   end
 
   def set_item

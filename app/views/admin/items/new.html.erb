@@ -20,12 +20,15 @@
   <%= f.label :image, "Attach an Image" %> <br>
   <%= f.file_field :image %> <br>
 
-  <ul>
-    <% Category.all.each do |category| %>
-        <%= check_box_tag(category.title) %>
-        <%= label_tag(category.title) %>
+  <%= f.label "Categories" %>
+  <% Category.all.each do |category| %>
+    <% if @item.id %>
+      <%= f.check_box(:categories, { multiple: true, checked: (category.in? @item.categories) }, category.id) %>
+    <% else %>
+      <%= f.check_box(:categories, { multiple: true }, category.id ) %>
     <% end %>
-  </ul>
+    <%= label_tag(:categories, category.name) %>
+  <% end %>
 
   <%= f.submit "Create New Item" %>
 <% end %>

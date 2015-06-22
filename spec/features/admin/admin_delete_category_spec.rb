@@ -26,5 +26,26 @@ RSpec.describe "Admin Categories" do
       expect(current_path).to eq(admin_categories_path)
     end
 
+    it "can delete a categories" do
+      click_on 'Categories'
+      click_link('Create Category')
+      fill_in("Title", with: "Category Title #19")
+      click_on "Create Category"
+
+      click_link('Create Category')
+      fill_in("Title", with: "Category Title #20")
+      click_on "Create Category"
+
+
+
+      visit admin_categories_path
+      expect(page).to have_content("Category Title #19")
+      expect(page).to have_content("Category Title #20")
+      first(:link, "Delete").click
+
+      expect(page).not_to have_content("Category Title #19")
+      expect(page).to have_content("Category Title #20")
+    end
+
   end
 end

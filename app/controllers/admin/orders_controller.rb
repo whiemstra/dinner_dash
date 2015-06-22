@@ -1,7 +1,7 @@
 class Admin::OrdersController < Admin::BaseController
   def status
     @orders = Order.all
-    @statuses = ["all", "ordered", "completed", "paid", "cancelled"]
+    @statuses = ["ordered", "paid", "completed", "cancelled"]
     render :status
   end
 

@@ -4,8 +4,8 @@ RSpec.describe "Admin Categories" do
   context "with a logged in admin" do
     before(:each) do
       @admin = User.create(full_name: "Admin",
-        email: "admin@email.com",
-        role: 1, password: "dinnerdash")
+                           email: "admin@email.com",
+                           role: 1, password: "dinnerdash")
       visit root_path
       click_on("Toggle navigation")
       find('.dropdown-menu').click

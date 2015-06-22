@@ -37,7 +37,8 @@
             <td><%= order.date_created %></td>
             <td><%= order.date_updated %></td>
             <td class="order_status"><%= order.status %></td>
-            <td><%= link_to "Paid", admin_order_update_path({order_id: order.id, status: "paid"}), method: :post %>
+            <td>
+              <%= link_to "Paid", admin_order_update_path({order_id: order.id, status: "paid"}), method: :post %>
               <%= link_to "Completed", admin_order_update_path({order_id: order.id, status: "completed"}), method: "post" %>
               <%= link_to "Cancelled", admin_order_update_path({order_id: order.id, status: "cancelled"}), method: "post" %>
             </td>

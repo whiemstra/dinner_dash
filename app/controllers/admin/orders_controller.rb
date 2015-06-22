@@ -15,7 +15,7 @@ class Admin::OrdersController < Admin::BaseController
       flash[:notice] = "Order #{order.id} status changed to #{params[:status]}"
       redirect_to admin_order_path(order_id: order.id)
     else
-      flash[:error] = order.errors.full_messages.join(", ")
+      flash[:errors] = order.errors.full_messages.join(", ")
       redirect_to admin_order_path(order_id: order.id)
     end
   end

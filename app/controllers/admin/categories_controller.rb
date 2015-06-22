@@ -7,6 +7,9 @@ class Admin::CategoriesController < Admin::BaseController
     @categories = Category.all
   end
 
+  def show
+  end
+
   def new
     @category = Category.new
   end
@@ -14,9 +17,10 @@ class Admin::CategoriesController < Admin::BaseController
   def create
     category = Category.new(category_params)
     if category.save
+      flash[:success] = "Category has been successfully created."
       redirect_to admin_categories_path
     else
-      flash.now[:erros] = category.errors.full_messages.join(", ")
+      flash[:errors] = category.errors.full_messages.join(", ")
       redirect_to admin_categories_path
     end
   end
@@ -29,8 +33,9 @@ class Admin::CategoriesController < Admin::BaseController
       flash[:success] = "Category has been successfully updated."
       redirect_to admin_categories_path
     else
+      flash.now[:errors] = @category.errors.full_messages.join(", ")
       render :edit
-      redirect_to admin_categories_path
+      # redirect_to admin_categories_path
     end
   end
 
@@ -51,4 +56,4 @@ class Admin::CategoriesController < Admin::BaseController
     @category = Category.find(params[:id])
   end
 
- end
+end

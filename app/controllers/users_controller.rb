@@ -12,7 +12,7 @@ class UsersController < ApplicationController
       name_displayed
       redirect_to items_path # -- could do: user_path(user), but system defaults to show, so user would work
     else
-      flash.now[:error] = @user.errors.full_messages.join(", ")
+      flash.now[:errors] = @user.errors.full_messages.join(", ")
       render :new
     end
   end

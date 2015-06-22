@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
       flash[:success] = 'Item was successfully created.'
       redirect_to @item
     else
-      # flash[:error] = 'Title, Description, and Price must be present.'
+      # flash[:errors] = 'Title, Description, and Price must be present.'
       render :new
     end
   end
@@ -47,7 +47,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :description, :price, :image)
+    params.require(:item).permit(:title, :description, :price, :image, :category)
   end
 
   def set_item

@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
       flash[:success] = "Order Successfully Placed. Thank You!"
       redirect_to order_payment_path  #TODO change to orders_payment_path or somthing once we get CC working
     else
-      flash[:error] = "Please Try Again."
+      flash[:errors] = "Please Try Again."
       redirect_to checkout_path
     end
     @cart.clear_cart

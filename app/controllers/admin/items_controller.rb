@@ -26,7 +26,7 @@ class Admin::ItemsController < Admin::BaseController
       flash[:success] = 'Item was successfully created.'
       redirect_to @item
     else
-      # flash[:error] = 'Title, Description, and Price must be present.'
+      # flash[:errors] = 'Title, Description, and Price must be present.'
       render :new
     end
   end

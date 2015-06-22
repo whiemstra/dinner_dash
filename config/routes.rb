@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   root 'items#index'
   resources :items, only: [:index, :show]
+
   resources :categories, only: [:show]
   resources :cart_items, only: [:create, :index, :update, :destroy]
   resources :users
@@ -21,6 +22,7 @@ Rails.application.routes.draw do
   post 'cart_items/increase', to: 'cart_items#increase'
   post 'cart_items/decrease', to: 'cart_items#decrease'
 
+  post "items", to: 'admin/items#create'
   namespace :admin do
     get '/', to: 'dashboard#index'
     resources :items

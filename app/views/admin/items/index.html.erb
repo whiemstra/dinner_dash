@@ -1,5 +1,9 @@
 <ul class="nav nav-pills">
   <li> <%= link_to "All Items", root_path %></li>
+
+  <li> <%= link_to "Add New Item", new_admin_item_path %></li>
+  <li> <%= link_to "Add New Category", new_admin_category_path %></li>
+
   <% @categories.each do |category| %>
       <li>
         <%= link_to category.title, admin_category_path(category) %>

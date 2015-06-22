@@ -35,7 +35,7 @@ RSpec.describe "Admin Order Page" do
       expect(page).to have_content(10)
     end
 
-    xit "can change status of an individual order" do
+    it "can change status of an individual order" do
       visit items_path
       click_on "Add to Cart"
 
@@ -47,7 +47,8 @@ RSpec.describe "Admin Order Page" do
 
       visit admin_path
       expect(page).to have_content("ordered")
-      # select("cancelled", from: ###DROP DOWN MENU)
+      find('.dropdown-menu').click
+      click_on "Cancelled"
 
       expect(page).to have_content("cancelled")
       expect(page).to_not have_content("ordered")

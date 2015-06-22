@@ -4,9 +4,9 @@ describe 'user log in', type: :feature do
 
   before(:each) do
     @user = User.create(full_name: "Tom Petty",
-      display_name: 'Tom',
-      email: "petty@gmail.com",
-      password: "freefallin")
+                        display_name: 'Tom',
+                        email: "petty@gmail.com",
+                        password: "freefallin")
   end
 
   xit 'has a link on the home page that links to a sign up form' do

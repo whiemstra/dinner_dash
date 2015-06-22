@@ -9,7 +9,7 @@ class CartItemsController < ApplicationController
     @cart.add_item(item.id)
     session[:cart_items] = @cart.contents
 
-    flash[:success] = "You now have #{pluralize(@cart.count_of(item.id), item.title)} in your cart_items."
+    flash[:success] = "You now have #{pluralize(@cart.count_of(item.id), item.title)} in your cart."
     redirect_to root_path
   end
 

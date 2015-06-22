@@ -30,6 +30,6 @@
 <% if current_user %>
   <%= button_to "Checkout", cart_item_confirmation_path, method: :get %>
 <% else %>
-  <%= button_to "Checkout", new_user_path(origin: {destination: "checkout"}), method: :get %>
+  <%= button_to "Checkout", login_path(origin: {destination: "checkout"}), method: :get %>
 <% end %>
 

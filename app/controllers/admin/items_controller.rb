@@ -3,9 +3,19 @@ class Admin::ItemsController < Admin::BaseController
 
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
+  # def index
+  #   @items = Item.all
+  #   @categories = Category.all
+  # end
+
   def index
-    @items = Item.all
-    @categories = Category.all
+    if current_user && current_admin?
+      @items = Item.all
+      @categories = Category.all
+    else
+      @items = Item.available
+      @categories = Category.all
+    end
   end
 
   def show

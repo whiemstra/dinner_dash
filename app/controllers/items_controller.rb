@@ -4,8 +4,13 @@ class ItemsController < ApplicationController
   before_action :set_item, only: [:show]
 
   def index
+    if current_user && current_admin?
     @items = Item.all
     @categories = Category.all
+    else
+    @items = Item.available
+    @categories = Category.all
+    end
   end
 
   def show

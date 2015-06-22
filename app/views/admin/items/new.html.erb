@@ -20,12 +20,12 @@
   <%= f.label :image, "Attach an Image" %> <br>
   <%= f.file_field :image %> <br>
 
-    <ul>
-      <% Category.all.each do |category| %>
-          <%= check_box_tag(category.title) %>
-          <%= label_tag(category.title) %>
-      <% end %>
-    </ul>
+  <ul>
+    <% Category.all.each do |category| %>
+        <%= check_box_tag(category.title) %>
+        <%= label_tag(category.title) %>
+    <% end %>
+  </ul>
 
   <%= f.submit "Create New Item" %>
 <% end %>

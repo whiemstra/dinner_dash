@@ -17,6 +17,11 @@
   <%= f.label :image, "Attach an Image" %> <br>
   <%= f.file_field :image %> <br>
 
+  <%#= f.collection_check_boxes(:categories, :id, :name) %><br>
+  <%= f.label :status %><br>
+  <%= f.radio_button :status, false  %> Unavailable <br>
+  <%= f.radio_button :status, true  %> Available <br>
+
   <%= f.label :categories %>
   <% Category.all.each do |category| %>
     <% if @item.id %>

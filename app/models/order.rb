@@ -7,7 +7,7 @@ class Order < ActiveRecord::Base
   validates :subtotal, presence: true
   validates :status, presence: true
 
-  enum status: %w(ordered completed cancelled paid)
+  enum status: %w(ordered paid completed cancelled)
 
   default_scope { order(created_at: :desc)}
 

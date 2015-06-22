@@ -5,7 +5,6 @@ class Admin::ItemsController < Admin::BaseController
 
   def index
     @items = Item.all
-
     @categories = Category.all
   end
 
@@ -20,7 +19,7 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def create
-    @item = Item.new_plus_categories(item_params)
+    @item = Item.new_item_plus_categories(item_params)
 
     if @item.save
       flash[:success] = 'Item was successfully created.'
@@ -32,7 +31,8 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def update
-    if @item.update_plus_categories(item_params)
+    if @item.update_item_plus_categories(item_params)
+      @item.modify_status(params[:status])
       flash[:success] = "Item was successfully updated."
       redirect_to @item
     end
@@ -47,7 +47,7 @@ class Admin::ItemsController < Admin::BaseController
   private
 
   def item_params
-    params.require(:item).permit(:title, :description, :price, :image, :categories => [])
+    params.require(:item).permit(:title, :description, :price, :image, :status, :categories => [])
   end
 
   def set_item

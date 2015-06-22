@@ -12,7 +12,36 @@ class Item < ActiveRecord::Base
   has_attached_file :image, :default_url => ':placeholder'
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
 
-  def self.new_plus_categories(params)
+  # scope :active, -> { where(status: true) }
+
+  scope :available, -> { where(status: true) }
+  scope :retired, -> { where(status: false) }
+
+  def order_status
+    if status == true
+      "available"
+    else
+      "unavailable"
+    end
+  end
+
+  def retired
+    status == false
+  end
+
+  def available
+    status == true
+  end
+
+  def modify_status(status_param)
+    if status_param == "false"
+      status = false
+    else
+      status = true
+    end
+  end
+
+  def self.new_item_plus_categories(params)
     if params[:categories]
       params[:categories].delete("0")
       params[:categories] = params[:categories].map do |category_id|
@@ -23,7 +52,7 @@ class Item < ActiveRecord::Base
     item
   end
 
-  def update_plus_categories(params)
+  def update_item_plus_categories(params)
     if params[:categories]
       params[:categories].delete("0")
       params[:categories] = params[:categories].map do |category_id|

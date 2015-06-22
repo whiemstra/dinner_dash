@@ -1,16 +1,12 @@
 <h1><%= @item.title %></h1>
 
-<p>
-  <%= image_tag @item.image.url %>
+<p><%= image_tag @item.image.url %><br>
+   <%= @item.description %><br>
+   <%= to_dollars(@item.price) %><br>
+   <%= to_dollars(@item.price) %><br>
+   Current Status: <%= @item.order_status %><br>
 </p>
 
-<p>
-  <%= @item.description %>
-</p>
-
-<p>
-  <%= to_dollars(@item.price) %>
-</p>
 
 <% if current_user && admin_user %>
   <p>

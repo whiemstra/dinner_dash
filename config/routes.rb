@@ -23,12 +23,14 @@ Rails.application.routes.draw do
   post 'cart_items/decrease', to: 'cart_items#decrease'
 
   post "items", to: 'admin/items#create'
+  patch "items/:id", to: 'admin/items#update'
+
   namespace :admin do
     get '/', to: 'dashboard#index'
     resources :items
     resources :categories
     resources :item_categories
-    # resources :orders
+    resources :orders
   end
 
   get "cart_item/confirmation", to: "cart_items#confirmation"

@@ -11,9 +11,19 @@ describe 'unauthenticated user', type: :feature do
 
   it 'can browse all items on home page' do
     expect(current_path).to eq(items_path)
+    expect(page).to have_text("All Items")
     expect(page).to have_content("Item #1")
     expect(page).to have_content("Item #2")
     expect(page).to have_content(5)
+  end
+
+  it "visits the items page when that item title is clicked" do
+    visit items_path
+    click_on('Item #2')
+
+    expect(current_path).to eq(item_path(@item2))
+    expect(page).to have_text('Item #2')
+    expect(page).to have_text(12)
   end
 
   it 'can browse items by a category' do

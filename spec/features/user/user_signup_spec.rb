@@ -1,13 +1,16 @@
 require 'rails_helper'
 
+describe 'User Signup', type: :feature do
 
-describe 'user signup', type: :feature do
+  it 'has a link on the home page that links to a sign up form' do
+    visit root_path
+    click_on("Toggle navigation")
+    find('.dropdown-menu').click
 
-  xit 'has a link on the home page that links to a sign up form' do
-    visit items_path
-    expect(page).to have_link('Signup', new_user_path)
+    expect(page).to have_content('New user?')
+    expect(page).to have_link('Sign up now!', new_user_path)
 
-    click_link "Signup"
+    click_link "Sign up now!"
     expect(page).to have_text('Create Your Account')
 
   end
@@ -56,8 +59,14 @@ describe 'user signup', type: :feature do
 
     expect(page).to have_text('Create Your Account')
     expect(page).to have_text("Email can't be blank")
-  end
 
-  it 'asks for an optional display name, does not error if left blank'
+    visit new_user_path
+
+    within('#new_user') do
+      fill_in "Email", with: "Vane@email.com"
+      fill_in "Password",  with: "vane.uniq"
+      click_button "Create Account"
+    end
+  end
 
 end

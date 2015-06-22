@@ -1,107 +1,25 @@
 require 'rails_helper'
 
-describe 'creating a new item', type: :feature do
+describe 'Creating a New Item', type: :feature do
 
-  it 'blocks a regular user from creating an item'
+  before(:each) do
+    @user = User.create(full_name: "Tom Petty",
+                        email: "petty@gmail.com",
+                        password: "freefallin")
+    visit root_path
+    click_on("Toggle navigation")
+    find('.dropdown-menu').click
 
-  it 'has a link from the index page to add a new item' do
-    visit items_path
-    expect(page).to have_link('Add New Item', href: new_item_path)
+    fill_in "Email", with: @user.email
+    fill_in "Password", with: "freefallin"
+    click_button "Login"
   end
 
-  it 'lets me create a new item' do
-    visit new_item_path
-    fill_in('Title', with: "Fried Oreos")
-    fill_in('Description', with: "Literally fried Oreos")
-    fill_in('Price', with: 3 )
-    click_on "Create New Item"
-
-    expect(current_path).to eq(item_path(Item.last))
-    expect(page).to have_text("Fried Oreos")
+  it 'blocks a regular user from creating an item' do
+    expect(current_path).to eq(items_path)
+    expect(page).to_not have_content('Add New Item')
   end
 
-  it 'errors if title, description, or price are blank' do
-    visit new_item_path
-    expect(page).to have_text('Creating a New Item')
-
-    fill_in('Description', with: 'my new item')
-    click_on('Create New Item')
-
-    expect(page).to have_text('Creating a New Item')
-    expect(page).to have_text("Title can't be blank")
-    expect(page).to have_text("Price can't be blank")
-
-
-    fill_in('Title', with: 'Brand New Fabulous Item')
-    click_on('Create New Item')
-
-    expect(page).to have_text('Creating a New Item')
-    expect(page).to have_text("Price can't be blank")
-  end
-
-  it 'must have a unique title for all items; errors if title is repeated' do
-    @item = Item.create(title: "Item #1", description: "Description of Item", price: 18)
-
-    visit items_path
-    expect(page).to have_text('Item #1')
-
-    visit new_item_path
-    fill_in('Title', with: "Item #1")
-    fill_in('Description', with: "A more slammin' description")
-    fill_in('Price', with: 3 )
-    click_on "Create New Item"
-
-    expect(page).to have_text("Title has already been taken")
-  end
-
-
-  it 'has a price with a decimal numeric value' do
-    visit new_item_path
-    fill_in('Title', with: "Item Title")
-    fill_in('Description', with: "description of title")
-    fill_in('Price', with: 3500 )
-    click_on "Create New Item"
-
-    expect(current_path).to eq(item_path(Item.last))
-    expect(page).to have_text('$35.00')
-  end
-
-  it 'must have a price greater than zero in order to be valid' do
-    visit new_item_path
-    fill_in('Title', with: "Item Title")
-    fill_in('Description', with: "description of title")
-    fill_in('Price', with: 0 )
-    click_on "Create New Item"
-
-    expect(page).to have_text('Price must be greater than 0')
-  end
-
-  it 'errors when entered price has letters or symbols in it' do
-    visit new_item_path
-    fill_in('Title', with: "Item Title")
-    fill_in('Description', with: "description of title")
-    fill_in('Price', with: '86j0')
-    click_on "Create New Item"
-
-    expect(page).to have_text('Price is not a number')
-
-    fill_in('Price', with: '!&$%' )
-    click_on "Create New Item"
-
-    expect(page).to have_text('Price is not a number')
-  end
-
-  it 'can have a price greater than 0, but less than 1 dollar'  #we need to do??
-
-  xit 'has a default photo if one is not given, no errors' do
-    visit new_item_path
-    fill_in('Title', with: "Item Title")
-    fill_in('Description', with: "description of title")
-    fill_in('Price', with: 58 )
-    click_on "Create New Item"
-
-    expect(page).to have_text('$35.00')
-  end
 
 end
 

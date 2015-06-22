@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   post "items", to: 'admin/items#create'
   patch "items/:id", to: 'admin/items#update'
+  post "admin/items/:id/edit"    => "admin/items#edit"
 
   namespace :admin do
     get '/', to: 'dashboard#index'

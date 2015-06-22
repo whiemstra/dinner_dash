@@ -32,7 +32,7 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def update
-    if @item.update_attributes(item_params)
+    if @item.update_plus_categories(item_params)
       flash[:success] = "Item was successfully updated."
       redirect_to @item
     end

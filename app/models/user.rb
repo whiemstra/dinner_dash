@@ -6,4 +6,7 @@ class User < ActiveRecord::Base
             format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create}
 
   enum role: %w(default, admin)
+
+  has_many :orders
+
 end

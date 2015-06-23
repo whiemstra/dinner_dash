@@ -1,7 +1,7 @@
 class Admin::ItemsController < Admin::BaseController
   include ApplicationHelper
 
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [:show, :edit, :update]
 
   # def index
   #   @items = Item.all
@@ -33,7 +33,7 @@ class Admin::ItemsController < Admin::BaseController
 
     if @item.save
       flash[:success] = 'Item was successfully created.'
-      redirect_to @item
+      redirect_to item_path(@item)
     else
       flash[:errors] = 'Title, Description, and Price must be present.'
       render :new
@@ -44,7 +44,7 @@ class Admin::ItemsController < Admin::BaseController
     if @item.update_item_plus_categories(item_params)
       @item.modify_status(params[:status])
       flash[:success] = "Item was successfully updated."
-      redirect_to @item
+      redirect_to item_path(@item)
     end
   end
 

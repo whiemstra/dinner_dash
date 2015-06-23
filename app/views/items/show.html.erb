@@ -5,7 +5,13 @@
    <%= to_dollars(@item.price) %><br>
    <%= to_dollars(@item.price) %><br>
    Current Status: <%= @item.order_status %><br>
+
 </p>
+
+<!--<h2>Categories</h2>-->
+<!--<%# @item.categories.each do |category| %>-->
+  <!--<%#= category.title %>-->
+<!--<%# end %>-->
 
 
 <% if current_user && admin_user %>

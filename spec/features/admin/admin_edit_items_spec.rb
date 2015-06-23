@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin can edit an existing item', type: :feature do
+describe 'Admin', type: :feature do
 
   before(:each) do
     @admin = User.create(full_name: "Tom Petty",
@@ -15,34 +15,33 @@ describe 'Admin can edit an existing item', type: :feature do
     fill_in "Password", with: "freefallin"
     click_button "Login"
 
-    @item1 = Item.create(title: "Item #1", description: "item description #1", price: 20)
     category1 = Category.create(title: "Category #1")
     category2 = Category.create(title: "Category #2")
-    category1.items.create(title: "Item Title #4", description: "description for item #4 here", price: 5 )
+    category1.items.create(title: "Item Title #1", description: "description for item #1 here", price: 2500 )
+    category1.items.create(title: "Item Title #2", description: "description for item #2 here", price: 500 )
 
   end
 
-  it 'allows changing the title, description, price, and/or category' do
+  it 'can edit an existing item by changing the title, description, price, and/or category' do
     expect(current_path).to eq(admin_path)
     click_on "Items"
-    expect(page).to have_button('Edit Item')
+    click_link "Item Title #1"
     first(:button, "Edit Item").click
 
-    fill_in('Title',       with: 'Item #4')
+    fill_in('Title',       with: 'Item Title #4')
     fill_in('Description', with: 'Better description')
     fill_in('Price',       with: 17)
-    page.check("category #1")
-    page.check("category #2")
+
+    uncheck("Category #1")
+    check("Category #2")
     click_on('Update')
 
-    expect(page).to have_no_text('Item #1')
-    expect(page).to have_text('Item #4')
+    expect(page).to have_no_text('Item Title #1')
+    expect(page).to have_text('Item Title #4')
     expect(page).to have_no_text('sweet item description')
     expect(page).to have_text('Better description')
     expect(page).to have_no_text(10)
     expect(page).to have_text(17)
-    expect(page).to have_content("category #2")
-    expect(page).to_not have_content("category #1")
   end
 
   it 'blocks a unauthenticated admin user from editing an item' do

@@ -22,14 +22,7 @@
   <%= f.check_box :status %>
 
   <%= f.label :categories %>
-  <% Category.all.each do |category| %>
-    <% if @item.id %>
-      <%= f.check_box(:categories, { multiple: true, checked: (category.in? @item.categories) }, category.id) %>
-    <% else %>
-      <%= f.check_box(:categories, { multiple: true }, category.id ) %>
-    <% end %>
-    <%= label_tag(:categories, category.title) %>
-  <% end %>
+  <%= f.collection_check_boxes(:category_ids, Category.all, :id, :title) %>
 
   <%= f.submit %>
 <% end %>

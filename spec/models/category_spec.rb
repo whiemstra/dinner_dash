@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe Category, type: :model do
   let(:category) { Category.new }
 
-  it {should validate_presence_of :name}
-  it {should validate_presence_of :description}
+  it { should validate_presence_of :title }
+  it { should have_many(:items) }
 
   it 'has a title attribute' do
     expect(category).to respond_to(:title)
@@ -21,15 +21,6 @@ RSpec.describe Category, type: :model do
     expect(category.save).to eql(false)
     category.title = 'another valid title'
     expect(category.save).to eql(true)
-  end
-
-  # Relationships
-
-  it 'has many items' do
-    expect(category).to respond_to(:items)
-
-    category.ideas = FactoryGirl.create_list(:item, 2)
-    expect(category.ideas).to_not be_empty
   end
 
 end

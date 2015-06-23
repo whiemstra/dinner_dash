@@ -1,15 +1,15 @@
 <ul class="nav nav-pills">
   <li> <%= link_to "All Items", root_path %></li>
 
-<% if current_user && admin_user %>
-  <li> <%= link_to "Add New Item", new_admin_item_path %></li>
-  <li> <%= link_to "Create New Category", new_admin_category_path %></li>
-<% end %>
+  <% if current_user && admin_user %>
+    <li> <%= link_to "Add New Item", new_admin_item_path %></li>
+    <li> <%= link_to "Create New Category", new_admin_category_path %></li>
+  <% end %>
 
   <% @categories.each do |category| %>
-      <li>
-        <%= link_to category.title, category_path(category) %>
-      </li>
+    <li>
+      <%= link_to category.title, category_path(category) %>
+    </li>
   <% end %>
 </ul>
 
@@ -27,8 +27,7 @@
             <% if item.available %>
               <%= button_to "Add to Cart", cart_items_path(item_id: item.id), class: "btn btn-success" %>
             <% else %>
-              <%= button_to "Add to Cart", cart_items_path(item_id: item.id), class: "btn btn-success", disabled: "disabled" %>
-              <b>Item Not Currently Available</b><br>
+              <%= button_to "Item Not Available", cart_items_path(item_id: item.id), class: "btn btn-error", disabled: "disabled" %>
             <% end %>
             <%= to_dollars(item.price) %>
           </p>

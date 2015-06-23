@@ -35,7 +35,6 @@ class Admin::ItemsController < Admin::BaseController
       flash[:success] = 'Item was successfully created.'
       redirect_to item_path(@item)
     else
-      flash[:errors] = 'Title, Description, Price, and Category must be present.'
       render :new
     end
   end
@@ -46,7 +45,7 @@ class Admin::ItemsController < Admin::BaseController
       flash[:success] = "Item was successfully updated."
       redirect_to item_path(@item)
     else
-      # test this.
+      render :edit
     end
   end
 

@@ -1,7 +1,67 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+appetizers = Category.create(title: "Appetizers")
+sides = Category.create(title: "Sides")
+meats = Category.create(title: "Meats")
+seafood = Category.create(title: "Seafoods")
+desserts = Category.create(title: "Desserts")
+
+
+
+Item.create(title: "French Fries", description: "Very French", price: 400, categories: [appetizers])
+Item.create(title: "Mozzarella Sticks", description: "Very Cheesy", price: 5.00, categories: [appetizers])
+Item.create(title: "Onion Rings", description: "Very round rings", price: 450, categories: [appetizers])
+Item.create(title: "Dill Pickle Chips", description: "Very Interesting", price: 500, categories: [appetizers])
+Item.create(title: "Bacon and Olives", description: "Very Different", price: 550, categories: [appetizers])
+
+Item.create(title: "Side 1", description: "Description 1", price: 475, categories: [sides])
+Item.create(title: "Side 2", description: "Description 2", price: 500, categories: [sides])
+Item.create(title: "Side 3", description: "Description 3", price: 425, categories: [sides])
+Item.create(title: "Side 4", description: "Description 4", price: 550, categories: [sides])
+Item.create(title: "Side 5", description: "Description 5", price: 525, categories: [sides])
+
+Item.create(title: "Meat 1", description: "Description 1", price: 1525, categories: [meats])
+Item.create(title: "Meat 2", description: "Description 2", price: 1350, categories: [meats])
+Item.create(title: "Meat 3", description: "Description 3", price: 1275, categories: [meats])
+Item.create(title: "Meat 4", description: "Description 4", price: 1425, categories: [meats])
+Item.create(title: "Meat 5", description: "Description 5", price: 1550, categories: [meats])
+
+Item.create(title: "Sea 1", description: "Description 1", price: 1325, categories: [seafood])
+Item.create(title: "Sea 2", description: "Description 2", price: 1550, categories: [seafood])
+Item.create(title: "Sea 3", description: "Description 3", price: 1475, categories: [seafood])
+Item.create(title: "Sea 4", description: "Description 4", price: 1575, categories: [seafood])
+Item.create(title: "Sea 5", description: "Description 5", price: 1625, categories: [seafood])
+
+Item.create(title: "Sweet 1", description: "Description 1", price: 500, categories: [desserts])
+Item.create(title: "Sweet 2", description: "Description 2", price: 625, categories: [desserts])
+Item.create(title: "Sweet 3", description: "Description 3", price: 575, categories: [desserts])
+Item.create(title: "Sweet 4", description: "Description 4", price: 725, categories: [desserts])
+Item.create(title: "Sweet 5", description: "Description 5", price: 650, categories: [desserts])
+
+rachel = User.create(full_name: "Rachel Warbelow", email: "demo+rachel@jumpstartlab.com", password: "password")
+jeff = User.create(full_name: "Jeff Casimir", display_name: "J3", email: "demo+jeff@jumpstartlab.com", password: "password")
+jorge = User.create(full_name: "Jorge Tellez", display_name: "novohispano", email: "demo+jorge@jumpstartlab.com", password: "password")
+josh = User.create(full_name: "Josh Cheek", display_name: "josh", email: "demo+josh@jumpstartlab.com", password: "password", role: 1)
+
+order_1  = rachel.orders.create(status: 1, total_price: 650, subtotal: 650)
+order_2  = jeff.orders.create(status: 2, total_price: 2050, subtotal: 2050)
+order_3  = jorge.orders.create(status: 3, total_price: 1800, subtotal: 1800)
+order_4  = rachel.orders.create(status: 0, total_price: 1250, subtotal: 1250)
+order_5  = jeff.orders.create(status: 1, total_price: 1625, subtotal: 1625)
+order_6  = jorge.orders.create(status: 2, total_price: 550, subtotal: 550)
+order_7  = rachel.orders.create(status: 3, total_price: 1425, subtotal: 1425)
+order_8  = jeff.orders.create(status: 0, total_price: 1200, subtotal: 1200)
+order_9  = jorge.orders.create(status: 1, total_price: 5400, subtotal: 5400)
+order_10 = jeff.orders.create(status: 2, total_price: 2700, subtotal: 2700)
+
+ItemOrder.create(item_id: 16, quantity: 1, order_id: order_1.id)
+ItemOrder.create(item_id: 7, quantity: 1, order_id: order_2.id)
+ItemOrder.create(item_id: 15, quantity: 1, order_id: order_2.id)
+ItemOrder.create(item_id: 6, quantity: 1, order_id: order_3.id)
+ItemOrder.create(item_id: 16, quantity: 1, order_id: order_3.id)
+ItemOrder.create(item_id: 17, quantity: 2, order_id: order_4.id)
+ItemOrder.create(item_id: 15, quantity: 1, order_id: order_5.id)
+ItemOrder.create(item_id: 5, quantity: 1, order_id: order_6.id)
+ItemOrder.create(item_id: 1, quantity: 3, order_id: order_7.id)
+ItemOrder.create(item_id: 9, quantity: 1, order_id: order_8.id)
+ItemOrder.create(item_id: 20, quantity: 1, order_id: order_8.id)
+ItemOrder.create(item_id: 12, quantity: 4, order_id: order_9.id)
+ItemOrder.create(item_id: 3, quantity: 6, order_id: order_10.id)

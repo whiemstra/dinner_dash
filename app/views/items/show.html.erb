@@ -3,9 +3,6 @@
 <p><%= image_tag @item.image.url %><br>
    <%= @item.description %><br>
    <%= to_dollars(@item.price) %><br>
-   <%= to_dollars(@item.price) %><br>
-   Current Status: <%= @item.order_status %><br>
-
 </p>
 
 <!--<h2>Categories</h2>-->
@@ -17,8 +14,15 @@
 <% if current_user && admin_user %>
   <p>
     <%= button_to 'Edit Item', edit_admin_item_path(@item), class:"btn btn-success" %>
-    <%#= button_to 'Delete Item', admin_item_path, method: :delete, class:"btn btn-success" %><br>
   </p>
 <% end %>
+
+<p>
+  <% if @item.available %>
+    <%= button_to "Add to Cart", cart_items_path(item_id: @item.id), class: "btn btn-success" %>
+  <% else %>
+    <%= button_to "Item Not Available", cart_items_path(item_id: @item.id), class: "btn btn-error", disabled: "disabled" %>
+  <% end %>
+</p>
 
 <h4><%= link_to "< Back to All Items", root_path %></h4>

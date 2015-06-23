@@ -21,8 +21,7 @@
               <% if item.available %>
                 <%= button_to "Add to Cart", cart_items_path(item_id: item.id), class: "btn btn-success" %>
               <% else %>
-                <%= button_to "Add to Cart", cart_items_path(item_id: item.id), class: "btn btn-success", disabled: "disabled" %>
-                <b>Item Not Currently Available</b><br>
+                <%= button_to "Item Not Available", cart_items_path(item_id: item.id), class: "btn btn-error", disabled: "disabled" %>
               <% end %>
               <%= to_dollars(item.price) %>
             </p>

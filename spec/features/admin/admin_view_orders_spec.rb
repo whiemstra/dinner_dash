@@ -3,9 +3,10 @@ require "rails_helper"
 RSpec.describe 'Admin views orders', type: :feature do
 
   before(:each) do
-    @item1 = Item.create(title: "Item #1", description: "food", price: 800)
-    @item2 = Item.create(title: "Item #2", description: "wine", price: 1200)
-    @item3 = Item.create(title: "Item #3", description: "beer", price: 500)
+    category1 = FactoryGirl.create(:category, title: "Category #1")
+    category2 = FactoryGirl.create(:category, title: "Category #2")
+    Item.create!(title: "Item Title #1", description: "description for item #1 here", price: 2500, categories: [category1])
+    Item.create!(title: "Item Title #2", description: "description for item #2 here", price: 500, categories: [category2])
 
     @user = User.create(full_name: "Tom Petty",
                         email: "petty@gmail.com",
@@ -29,16 +30,12 @@ RSpec.describe 'Admin views orders', type: :feature do
     click_on "Confirm"
     click_on("Toggle navigation")
     click_link "Log out"
-  end
 
-
-  before(:each) do
     @admin = User.create(full_name: "Whitney",
                          display_name: "Whit",
                          email: "whit@email.com",
                          role: 1,
                          password: "pa$$word")
-
     visit root_path
 
     click_on("Toggle navigation")

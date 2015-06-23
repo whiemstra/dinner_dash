@@ -15,14 +15,17 @@ describe 'Admin', type: :feature do
     fill_in "Password", with: "freefallin"
     click_button "Login"
 
-    @item1 = Item.create(title: "Item #1", description: "item description #1", price: 20)
+    category1 = FactoryGirl.create(:category, title: "Category #1")
+    category2 = FactoryGirl.create(:category, title: "Category #2")
+    @item1 = Item.create!(title: "Item Title #1", description: "description for item #1 here", price: 2500, categories: [category1])
+    @item2 = Item.create!(title: "Item Title #2", description: "description for item #2 here", price: 500, categories: [category2])
   end
 
   it 'can retire an existing item' do
     click_on "Items"
-    expect(page).to have_content("Item #1")
+    expect(page).to have_content("Item Title #1")
 
-    click_link "Item #1"
+    click_link "Item Title #1"
     expect(page).to have_button("Edit Item")
 
     click_on "Edit Item"
@@ -36,7 +39,7 @@ describe 'Admin', type: :feature do
 
   it 'can un-retire an existing item' do
     click_on "Items"
-    click_link "Item #1"
+    click_link "Item Title #1"
     click_on "Edit Item"
     uncheck('Available?')
     click_on "Update"

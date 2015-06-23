@@ -15,14 +15,15 @@ RSpec.describe "Admin " do
       fill_in('Password', with: 'dinnerdash')
       click_on "Login"
 
-      category = Category.create(title: "Drinks")
-      item1 = Item.create(title: "Wine", description: "Pinot Noir", price: 10)
-      item1.item_categories.create(category: category)
+      category1 = FactoryGirl.create(:category, title: "Category #1")
+      category2 = FactoryGirl.create(:category, title: "Category #2")
+      Item.create!(title: "Item Title #1", description: "description for item #1 here", price: 2500, categories: [category1])
+      Item.create!(title: "Item Title #2", description: "description for item #2 here", price: 500, categories: [category2])
     end
 
     it "displays the orders current status" do
       visit items_path
-      click_on "Add to Cart"
+      first(:button, "Add to Cart").click
 
       click_on("Toggle navigation")
       find('#cart').click
@@ -32,12 +33,12 @@ RSpec.describe "Admin " do
 
       visit admin_path
       expect(page).to have_content("ordered")
-      expect(page).to have_content(10)
+      expect(page).to have_content('$25.00')
     end
 
     it "can change status of an individual order" do
       visit items_path
-      click_on "Add to Cart"
+      first(:button, "Add to Cart").click
 
       click_on("Toggle navigation")
       find('#cart').click

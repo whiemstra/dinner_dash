@@ -3,6 +3,11 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   let(:item) { Item.create(title: "Item #1", description: "Item Description", price: 23) }
 
+  it { should validate_presence_of(:title)}
+  it { should validate_presence_of(:description)}
+  it { should validate_presence_of(:price)}
+
+
   it 'is valid' do
     expect(item).to be_valid
   end
@@ -24,17 +29,19 @@ RSpec.describe Item, type: :model do
 
   # Relationships
 
-  xit 'belongs to a category' do
-    # Check I can assign it
-    expect(item).to respond_to(:category)
-    expect(item).to respond_to(:category=)
+  it 'belongs to a category' do
+    expect(item).to respond_to(:categories)
+    expect(item).to respond_to(:categories=)
 
-    # Use it now, and make sure category_id was set
-    item.category = category
+    item.categories = category
     expect(item.category_id).to eql(category.id)
   end
 
-  it 'can belong to more than one category'
+  xit 'can belong to more than one category' do
+    item.category = category
+    expect(item).to be_valid
+
+  end
 
   xit 'must belong to at least one category to be valid' do
     item.category = nil

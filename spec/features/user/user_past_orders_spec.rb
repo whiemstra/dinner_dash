@@ -52,4 +52,28 @@ describe 'Authenticated user', type: :feature do
     expect(page).to_not have_button("Add to Cart")
   end
 
+  it "can reorder available item from past orders" do
+    visit root_path
+    click_on("Toggle navigation")
+    click_link("View Past Orders")
+
+    expect(page).to have_content("Past Orders")
+    expect(page).to have_content("Item #1")
+    expect(page).to have_content("$0.16")
+    expect(current_path).to eq(user_orders_path)
+
+    click_on "Item #1"
+
+    expect(page).to have_button("Add to Cart")
+
+    click_on "Add to Cart"
+
+    click_on("Toggle navigation")
+    find('#cart').click
+
+    click_on "Checkout"
+
+    click_on "Confirm"
+  end
+
 end

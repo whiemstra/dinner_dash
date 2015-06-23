@@ -29,13 +29,13 @@ class Admin::ItemsController < Admin::BaseController
   end
 
   def create
-    @item = Item.new_item_plus_categories(item_params)
+    @item = Item.new(item_params)
 
     if @item.save
       flash[:success] = 'Item was successfully created.'
       redirect_to item_path(@item)
     else
-      flash[:errors] = 'Title, Description, and Price must be present.'
+      flash[:errors] = 'Title, Description, Price, and Category must be present.'
       render :new
     end
   end
@@ -45,6 +45,8 @@ class Admin::ItemsController < Admin::BaseController
       @item.modify_status(params[:status])
       flash[:success] = "Item was successfully updated."
       redirect_to item_path(@item)
+    else
+      # test this.
     end
   end
 
@@ -57,7 +59,7 @@ class Admin::ItemsController < Admin::BaseController
   private
 
   def item_params
-    params.require(:item).permit(:title, :description, :price, :image, :status, :categories => [])
+    params.require(:item).permit(:title, :description, :price, :image, :status, :category_ids => [])
   end
 
   def set_item

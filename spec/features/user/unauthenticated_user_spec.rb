@@ -3,9 +3,11 @@ require 'rails_helper'
 describe 'unauthenticated user', type: :feature do
 
   before(:each) do
-    @item1 = Item.create(title: "Item #1", description: "food", price: 10)
-    @item2 = Item.create(title: "Item #2", description: "wine", price: 12)
-    @item3 = Item.create(title: "Item #3", description: "beer", price: 5)
+    @dummy_category = FactoryGirl.create(:category)
+    @item1 = Item.create(title: "Item #1", description: "food", price: 10, categories: [@dummy_category])
+    @item2 = Item.create(title: "Item #2", description: "wine", price: 12, categories: [@dummy_category])
+    @item3 = Item.create(title: "Item #3", description: "beer", price: 5, categories: [@dummy_category])
+
     visit items_path
   end
 
@@ -27,8 +29,10 @@ describe 'unauthenticated user', type: :feature do
   end
 
   it 'can browse items by a category' do
-    category = Category.create(title: "Category Name")
-    category.items.create(title: "Item Title #38", description: "slammin' description here", price: 5 )
+    category = FactoryGirl.create(:category, title: "Category Name")
+    Item.create!(title: "Item Title #38", description: "slammin' description here", price: 5, categories: [category])
+
+
     visit root_path
     click_on "Category Name"
 
@@ -36,4 +40,6 @@ describe 'unauthenticated user', type: :feature do
     expect(page).to have_content("slammin' description here")
     expect(page).to have_content("Item Title #38")
   end
+
+
 end

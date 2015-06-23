@@ -12,6 +12,7 @@ class Item < ActiveRecord::Base
   has_attached_file :image, :default_url => ':placeholder'
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
 
+  validate :has_at_least_one_category
 
   scope :available, -> { where(status: true) }
   scope :retired, -> { where(status: false) }
@@ -59,6 +60,14 @@ class Item < ActiveRecord::Base
       end
     end
     self.update(params)
+  end
+
+  private
+
+  def has_at_least_one_category
+    if categories.empty?
+      errors.add(:categories, "must have at least one assigned category")
+    end
   end
 
 end

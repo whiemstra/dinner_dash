@@ -3,8 +3,10 @@ require 'rails_helper'
 describe 'A regular user', type: :feature do
 
   before(:each) do
-    Item.create(title: "Item #1", description: "item description #1", price: 20)
-    @user = User.create(full_name: "Tom Petty",
+
+    @category = FactoryGirl.create(:category)
+    Item.create!(title: "Item #1", description: "item description #1", price: 20, categories: [@category])
+    @user = User.create!(full_name: "Tom Petty",
                         email: "petty@gmail.com",
                         password: "freefallin")
     visit root_path

@@ -3,9 +3,10 @@ require 'rails_helper'
 describe 'unauthenticated user', type: :feature do
 
   before(:each) do
-    @item1 = Item.create(title: "Item #1", description: "food", price: 10)
-    @item2 = Item.create(title: "Item #2", description: "wine", price: 12)
-    @item3 = Item.create(title: "Item #3", description: "beer", price: 5)
+    @category = FactoryGirl.create(:category)
+    @item1 = Item.create(title: "Item #1", description: "food", price: 10, categories: [@category])
+    @item2 = Item.create(title: "Item #2", description: "wine", price: 12, categories: [@category])
+    @item3 = Item.create(title: "Item #3", description: "beer", price: 5, categories: [@category])
     visit items_path
   end
 

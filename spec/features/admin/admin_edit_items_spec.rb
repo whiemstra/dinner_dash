@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Admin', type: :feature do
 
   before(:each) do
-    @admin = User.create(full_name: "Tom Petty",
+    @admin = User.create!(full_name: "Tom Petty",
                          email: "petty@gmail.com",
                          role: 1,
                          password: "freefallin")
@@ -15,11 +15,10 @@ describe 'Admin', type: :feature do
     fill_in "Password", with: "freefallin"
     click_button "Login"
 
-    category1 = Category.create(title: "Category #1")
-    category2 = Category.create(title: "Category #2")
-    category1.items.create(title: "Item Title #1", description: "description for item #1 here", price: 2500 )
-    category1.items.create(title: "Item Title #2", description: "description for item #2 here", price: 500 )
-
+    category1 = FactoryGirl.create(:category, title: "Category #1")
+    category2 = FactoryGirl.create(:category, title: "Category #2")
+    Item.create!(title: "Item Title #1", description: "description for item #1 here", price: 2500, categories: [category1])
+    Item.create!(title: "Item Title #2", description: "description for item #2 here", price: 500, categories: [category2])
   end
 
   it 'can edit an existing item by changing the title, description, price, and/or category' do

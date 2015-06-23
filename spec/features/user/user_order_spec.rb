@@ -2,11 +2,12 @@ require 'rails_helper'
 
 describe 'Authenticated user', type: :feature do
   before(:each) do
-    @item1 = Item.create(title: "Item #1", description: "food", price: 8)
-    @item2 = Item.create(title: "Item #2", description: "wine", price: 12)
-    @item3 = Item.create(title: "Item #3", description: "beer", price: 5)
+    @category = FactoryGirl.create(:category)
+    @item1 = Item.create!(title: "Item #1", description: "food", price: 8, categories: [@category])
+    @item2 = Item.create!(title: "Item #2", description: "wine", price: 12, categories: [@category])
+    @item3 = Item.create!(title: "Item #3", description: "beer", price: 5, categories: [@category])
 
-    @user = User.create(full_name: "Tom Petty",
+    @user = User.create!(full_name: "Tom Petty",
                         email: "petty@gmail.com",
                         password: "freefallin")
 

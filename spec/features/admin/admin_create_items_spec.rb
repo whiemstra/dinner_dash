@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Creating a New Item', type: :feature do
 
   before(:each) do
-    @admin = User.create(full_name: "Tom Petty",
+    @admin = User.create!(full_name: "Tom Petty",
                          email: "petty@gmail.com",
                          role: 1,
                          password: "freefallin")
@@ -42,7 +42,7 @@ end
 describe "Verifying new item", type: :feature do
 
   before(:each) do
-    @admin = User.create(full_name: "Tom Petty",
+    @admin = User.create!(full_name: "Tom Petty",
                          email: "petty@gmail.com",
                          role: 1,
                          password: "freefallin")
@@ -55,27 +55,23 @@ describe "Verifying new item", type: :feature do
     click_button "Login"
   end
 
-  it 'errors if title, description, or price are blank' do
+  it 'errors if title, description, price, or category are blank' do
     click_on "Items"
     click_on "Add New Item"
     expect(page).to have_text('Creating a New Item')
 
+    fill_in('Title', with: "Item title")
     fill_in('Description', with: 'my new item')
     click_on('Create Item')
 
     expect(page).to have_text('Creating a New Item')
-    expect(page).to have_text("Title can't be blank")
     expect(page).to have_text("Price can't be blank")
+    expect(page).to have_text("Category can't be blank")
 
-    fill_in('Title', with: 'Brand New Fabulous Item')
-    click_on('Create Item')
-
-    expect(page).to have_text('Creating a New Item')
-    expect(page).to have_text("Price can't be blank")
   end
 
   it 'must have a unique title for all items; errors if title is repeated' do
-    @item = Item.create(title: "Item #1",
+    @item = Item.create!(title: "Item #1",
                         description: "Description of Item",
                         price: 18)
 

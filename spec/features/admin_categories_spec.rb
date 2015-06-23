@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'admin categories', type: :feature do
+describe 'admin', type: :feature do
 
   before(:each) do
     User.create(full_name: "vanessa", display_name: "admin", email: "admin@email.com", role: 1, password: "dinnerdash")
@@ -32,6 +32,18 @@ describe 'admin categories', type: :feature do
     fill_in('Title', with: 'Category 5')
     click_button('Update Category')
     expect(page).to have_content('Category 5')
+    expect(current_path).to eq(admin_categories_path)
+  end
+
+
+  it 'deletes a category' do
+    page.click_on 'Categories'
+    find('.create-category').click
+    page.fill_in('Title', with: 'Category 1')
+    page.click_button('Create Category')
+
+    click_link "Delete"
+    expect(page).to_not have_content('Category 1')
     expect(current_path).to eq(admin_categories_path)
   end
 end

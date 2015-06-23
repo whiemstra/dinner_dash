@@ -1,0 +1,7 @@
+<h1>
+  <% if @current_user.display_name.present? %>
+    <%= flash[:success] = "#{current_user.display_name} Dashboard" %>
+  <% else %>
+    <%= flash[:success] = "#{current_user.full_name} Dashboard" %>
+  <% end %>
+</h1>

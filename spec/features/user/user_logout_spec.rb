@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User Logout', type: :feature do
+describe 'Logged out user', type: :feature do
 
   before(:each) do
     @user = User.create(full_name: "Tom Petty",
@@ -9,7 +9,7 @@ describe 'User Logout', type: :feature do
                         password: "freefallin")
   end
 
-  it 'only shows a link if logged in and logs user out when clicked' do
+  it 'only sees logout link if logged in, and it logs user out when clicked' do
     visit root_path
     click_on("Toggle navigation")
 
@@ -34,13 +34,13 @@ describe 'User Logout', type: :feature do
     expect(page).to have_content("Sign Up/Login")
   end
 
-  xit 'does not allow people to access pages when logged out' do
+  it 'cannot access pages when logged out' do
     visit root_path
     click_on("Toggle navigation")
 
     expect(page).to have_content("Sign Up/Login")
 
-    #past orders page....
+    expect(page).to have_no_content("Previous Orders")
   end
 
 end

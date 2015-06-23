@@ -32,9 +32,25 @@ describe 'Admin', type: :feature do
     click_on "Update"
 
     expect(page).to have_content("Current Status: unavailable")
+  end
+
+  it 'can un-retire an existing item' do
+    click_on "Items"
+    click_link "Item #1"
+    click_on "Edit Item"
+    uncheck('Available?')
+    click_on "Update"
+
+    expect(page).to have_content("Current Status: unavailable")
+
+    click_on "Edit Item"
+    check('Available?')
+    click_on "Update"
+
+    expect(page).to have_content("Current Status: available")
 
   end
 
-  it 'prevents retired items form being viewed on items page by regular user'
+
 
 end

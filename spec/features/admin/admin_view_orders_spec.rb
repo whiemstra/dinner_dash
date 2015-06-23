@@ -62,21 +62,22 @@ RSpec.describe 'Admin views orders', type: :feature do
     expect(page).to have_content("Completed")
   end
 
-  xit "can view individual orders and its info" do
+  it "can view individual orders and its info" do
     expect(current_path).to eq(admin_path)
     expect(page).to have_content("Admin Dashboard")
-    save_and_open_page
-    click_link "1"
+    order = Order.first
+    click_on(order.id)
 
-    expect(page).to have_content("Order Summary")
+    expect(page).to have_content("Order Information")
     expect(page).to have_content("Tom Petty")
-    expect(page).to have_content("petty@email.com")
+    expect(page).to have_content("petty@gmail.com")
     expect(page).to have_content("ordered")
-    expect(page).to have_content(400)
+    expect(page).to have_content("Order Total")
   end
 
-  xit "cannot access or alter user data" do
+  it "cannot access or alter user data" do
     visit user_path(@user)
+
     expect(page).to_not have_content("Tom Petty Dashboard")
     expect(page).to have_content("Whit Dashboard")
   end

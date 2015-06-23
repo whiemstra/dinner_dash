@@ -23,4 +23,8 @@ RSpec.describe Category, type: :model do
   it "responds to items" do
     expect(category).to respond_to(:items)
   end
+
+  it "responds to item_categories" do
+    expect(category).to respond_to(:item_categories)
+  end
 end

@@ -133,17 +133,5 @@ describe "Verifying new item", type: :feature do
     expect(page).to have_text('Price is not a number')
   end
 
-  xit 'has a default photo if one is not given, no errors' do
-    visit new_admin_item_path
-    fill_in('Title',       with: "Item Title")
-    fill_in('Description', with: "description of title")
-    fill_in('Price',       with: 5800 )
-    click_on "Create Item"
-
-    expect(page).to have_text('$58.00')
-    # expect(page).to have_content(find(".thumbnail"))
-    # page.should have_css('img', text: "default_image.jpeg")
-  end
-
 end
 

@@ -20,7 +20,7 @@
     </tr>
     <% order.item_orders.each do |order_item| %>
       <tr>
-        <td><%=link_to order_item.item.title, item_path(order_item) %></td>
+        <td><%=link_to order_item.item.title, item_path(order_item.item) %></td>
         <td><%= order_item.quantity %></td>
         <td><%= to_dollars(order_item.item.price) %></td>
         <td><%= to_dollars(order_item.item.price * order_item.quantity) %></td>

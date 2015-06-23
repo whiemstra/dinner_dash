@@ -29,6 +29,7 @@
                 <li><%= link_to "Admin Dashboard", admin_path %></li>
                 <li><%= link_to "Log out", logout_path, method: "delete" %></li>
             <% else %>
+                <li><%= link_to "View Past Orders", user_orders_path %></li>
                 <li><%= link_to "Log out", logout_path, method: "delete" %></li>
             <% end %>
         <% else %>

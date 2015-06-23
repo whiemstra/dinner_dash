@@ -7,7 +7,7 @@ desserts = Category.create(title: "Desserts")
 
 
 Item.create(title: "French Fries", description: "Very French", price: 400, categories: [appetizers])
-Item.create(title: "Mozzarella Sticks", description: "Very Cheesy", price: 5.00, categories: [appetizers])
+Item.create(title: "Mozzarella Sticks", description: "Very Cheesy", price: 500, categories: [appetizers])
 Item.create(title: "Onion Rings", description: "Very round rings", price: 450, categories: [appetizers])
 Item.create(title: "Dill Pickle Chips", description: "Very Interesting", price: 500, categories: [appetizers])
 Item.create(title: "Bacon and Olives", description: "Very Different", price: 550, categories: [appetizers])

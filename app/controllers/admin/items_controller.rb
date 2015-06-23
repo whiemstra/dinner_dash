@@ -48,11 +48,11 @@ class Admin::ItemsController < Admin::BaseController
     end
   end
 
-  def destroy
-    @item.destroy
-    flash[:success] = "Item was successfully deleted."
-    redirect_to items_path
-  end
+  # def destroy
+  #   @item.destroy
+  #   flash[:success] = "Item was successfully deleted."
+  #   redirect_to items_path
+  # end
 
   private
 

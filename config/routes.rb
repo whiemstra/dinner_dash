@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   resources :users
 
   namespace :user do
-    resources :orders, only: [:index, :show]
+    resources :orders, only: [:index, :show, :create]
   end
-  resources :orders, only: [:create]
+  # resources :orders, only: [:create]
 
   # resource  :checkout,   only: [:create, :update]
 
@@ -28,14 +28,14 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '/', to: 'dashboard#index'
-    resources :items
+    resources :items, except: [:destroy]
     resources :categories
     resources :item_categories
     resources :orders
   end
 
   get "cart_item/confirmation", to: "cart_items#confirmation"
-  get "order/payment", to: "orders#payment"
+  get "order/show", to: "orders#show"
 
   get "admin/order", to: "admin/orders#show"
   get "admin/orders/status", to: "admin/orders#status"

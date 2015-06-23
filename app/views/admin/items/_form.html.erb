@@ -18,9 +18,8 @@
   <%= f.file_field :image %> <br>
 
   <%#= f.collection_check_boxes(:categories, :id, :name) %><br>
-  <%= f.label :status %><br>
-  <%= f.radio_button :status, false  %> Unavailable <br>
-  <%= f.radio_button :status, true  %> Available <br>
+  <%= f.label :status, 'Is Available?' %><br>
+  <%= f.check_box :status %>
 
   <%= f.label :categories %>
   <% Category.all.each do |category| %>

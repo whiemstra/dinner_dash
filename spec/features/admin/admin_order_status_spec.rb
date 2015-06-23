@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe "Admin Order Page" do
-  context "with a logged in admin" do
+RSpec.describe "Admin " do
+  context "when logged in" do
 
     before(:each) do
       @admin = User.create(full_name: "Admin",
@@ -47,8 +47,9 @@ RSpec.describe "Admin Order Page" do
 
       visit admin_path
       expect(page).to have_content("ordered")
+
       find('.dropdown-menu').click
-      click_on "Cancelled"
+      click_on("Cancelled")
 
       expect(page).to have_content("cancelled")
       expect(page).to_not have_content("ordered")

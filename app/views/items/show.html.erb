@@ -11,7 +11,7 @@
 <% if current_user && admin_user %>
   <p>
     <%= button_to 'Edit Item', edit_admin_item_path(@item), class:"btn btn-success" %>
-    <%= button_to 'Delete Item', admin_item_path, method: :delete, class:"btn btn-success" %><br>
+    <%#= button_to 'Delete Item', admin_item_path, method: :delete, class:"btn btn-success" %><br>
   </p>
 <% end %>
 

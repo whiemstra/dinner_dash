@@ -7,4 +7,6 @@ RSpec.describe User, type: :model do
     expect(new_user).to respond_to(:orders)
     expect(new_user).to respond_to(:orders=)
   end
+
+  it 'should have more tests yeah'
 end

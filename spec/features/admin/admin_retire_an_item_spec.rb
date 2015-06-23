@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Admin can retire an existing item', type: :feature do
+describe 'Admin', type: :feature do
 
   before(:each) do
     @admin = User.create(full_name: "Tom Petty",
@@ -18,24 +18,21 @@ describe 'Admin can retire an existing item', type: :feature do
     @item1 = Item.create(title: "Item #1", description: "item description #1", price: 20)
   end
 
-  it 'allows an item to be deleted' do
+  it 'can retire an existing item' do
     click_on "Items"
+    expect(page).to have_content("Item #1")
 
-    click_on "Delete Item"
-
-    expect(current_path).to eq(items_path)
-    expect(page).not_to have_text("Item #1")
-  end
-
-  it 'allows an item to be retired' do
-    click_on "Items"
+    click_link "Item #1"
+    expect(page).to have_button("Edit Item")
 
     click_on "Edit Item"
 
-    expect(current_path).to eq(edit_admin_items_path(@item1))
-    expect(page).to have_content("Item #1")
+    expect(current_path).to eq(edit_admin_item_path(@item1))
+    uncheck('Available?')
+    click_on "Update"
 
-    page.check "Unavailable"
+    expect(page).to have_content("Current Status: unavailable")
+
   end
 
   it 'prevents retired items form being viewed on items page by regular user'

@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   include SessionsHelper
 
-  # helper_method :current_user
+  helper_method :current_user
 
   before_action :load_cart
 

@@ -42,7 +42,7 @@
       <div class="orders">
         <% Order.all.each do |order| %>
             <tr class="order" data-status="<%= order.status %>">
-              <td><%= link_to "#{order.id}", admin_order_path({order_id: order.id}) %></td>
+              <td><%= link_to "#{order.id}", admin_order_path({id: order.id}) %></td>
               <td><%= order.user_id %></td>
               <td><%= to_dollars(order.subtotal) %></td>
               <td><%= order.date_created %></td>

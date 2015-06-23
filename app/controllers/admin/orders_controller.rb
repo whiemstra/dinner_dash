@@ -6,7 +6,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def show
-    @order = Order.find_by(id: params[:order_id].to_i)
+    @order = Order.find_by(id: params[:id].to_i)
   end
 
   def update

@@ -1,0 +1,37 @@
+<div>
+
+  <h3><%= link_to "< Back to All Items", root_path %></h3>
+
+  <h3>Purchaser: <%= @current_user.full_name %> -- email: <%= @current_user.email %></h3>
+
+  <h1>Past Orders</h1>
+
+  <% @current_user.orders.each do |order| %>
+
+  <h4>Ordered: <%= order.date_created %></h4>
+  <h4>Current Status: <%= order.order_status %></h4>
+
+  <table class="table table-hover table-bordered">
+    <tr>
+      <td>Item Name</td>
+      <td>Quantity</td>
+      <td>Price</td>
+      <td>Subtotal</td>
+    </tr>
+    <% order.item_orders.each do |order_item| %>
+      <tr>
+        <td><%=link_to order_item.item.title, item_path(order_item) %></td>
+        <td><%= order_item.quantity %></td>
+        <td><%= to_dollars(order_item.item.price) %></td>
+        <td><%= to_dollars(order_item.item.price * order_item.quantity) %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td><b>Order Total</b></td>
+      <td></td>
+      <td></td>
+      <td><b><%= to_dollars(order.total.to_f) %> </b></td>
+    </tr>
+  </table><br><br>
+  <% end %>
+</div>

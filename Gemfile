@@ -47,6 +47,7 @@ group :development, :test do
   gem 'launchy'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
+  gem 'mixitup_rails'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 
@@ -58,10 +59,9 @@ group :development, :test do
 end
 
 group :production do
-  gem 'mixitup_rails'
   gem 'pg'
   #gem 'figaro'
-  gem 'rails_12factor'
+  # gem 'rails_12factor'
 end
 
 

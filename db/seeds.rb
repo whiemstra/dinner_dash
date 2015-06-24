@@ -31,10 +31,10 @@ Item.create(title: "Creemore Urbock Dark Lager", description: "British type beer
 Item.create(title: "Guinness Draught Dark Stout", description: "British type beer with a delicate fruity smell and robust, malty character", price: 625, categories: [dark], image_remote_url: "http://www.thebeerstore.ca/sites/default/files/styles/brand_hero/public/brand/hero/2118-l.jpg?itok=KEcAC7gS")
 Item.create(title: "Hockley Dark English Ale", description: "British type beer with a delicate fruity smell and robust, malty character", price: 575, categories: [dark], image_remote_url: "http://www.thebeerstore.ca/sites/default/files/styles/brand_hero/public/sbs/brand/hockley_dark_ale_large.jpg?itok=umh_X0ho")
 
-rachel = User.find_or_create_by(full_name: "Rachel Warbelow", email: "demo+rachel@jumpstartlab.com", password: "password")
-jeff = User.find_or_create_by(full_name: "Jeff Casimir", display_name: "J3", email: "demo+jeff@jumpstartlab.com", password: "password")
-jorge = User.find_or_create_by(full_name: "Jorge Tellez", display_name: "novohispano", email: "demo+jorge@jumpstartlab.com", password: "password")
-josh = User.find_or_create_by(full_name: "Josh Cheek", display_name: "josh", email: "demo+josh@jumpstartlab.com", password: "password", role: 1)
+rachel = User.create(full_name: "Rachel Warbelow", email: "demo+rachel@jumpstartlab.com", password: "password")
+jeff = User.create(full_name: "Jeff Casimir", display_name: "J3", email: "demo+jeff@jumpstartlab.com", password: "password")
+jorge = User.create(full_name: "Jorge Tellez", display_name: "novohispano", email: "demo+jorge@jumpstartlab.com", password: "password")
+josh = User.create(full_name: "Josh Cheek", display_name: "josh", email: "demo+josh@jumpstartlab.com", password: "password", role: 1)
 
 order_1  = rachel.orders.create(status: 1, total_price: 575, subtotal: 575)
 order_2  = jeff.orders.create(status: 2, total_price: 900, subtotal: 900)

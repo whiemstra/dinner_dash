@@ -49,9 +49,9 @@ RSpec.describe "Admin " do
       visit admin_path
       expect(page).to have_content("ordered")
 
-      find('.dropdown-menu').click
+      within('.dropdown-menu') do
       click_on("Cancelled")
-
+      end
       expect(page).to have_content("cancelled")
       expect(page).to_not have_content("ordered")
     end

@@ -3,9 +3,7 @@ require 'rails_helper'
 describe 'Authenticated user', type: :feature do
   before(:each) do
     @category = FactoryGirl.create(:category)
-    @item1 = Item.create!(title: "Item #1", description: "food", price: 8, categories: [@category], status: true)
-    @item2 = Item.create!(title: "Item #2", description: "wine", price: 12, categories: [@category])
-    @item3 = Item.create!(title: "Item #3", description: "beer", price: 5, categories: [@category])
+    @item1 = Item.create!(title: "Item #1", description: "food", price: 800, categories: [@category], status: true)
 
     @user = User.create!(full_name: "Tom Petty",
                          email: "petty@gmail.com",
@@ -37,7 +35,7 @@ describe 'Authenticated user', type: :feature do
 
     expect(page).to have_content("Past Orders")
     expect(page).to have_content("Item #1")
-    expect(page).to have_content("$0.16")
+    expect(page).to have_content("$16.00")
     expect(current_path).to eq(user_orders_path)
   end
 
@@ -59,7 +57,7 @@ describe 'Authenticated user', type: :feature do
 
     expect(page).to have_content("Past Orders")
     expect(page).to have_content("Item #1")
-    expect(page).to have_content("$0.16")
+    expect(page).to have_content("$16.00")
     expect(current_path).to eq(user_orders_path)
 
     click_on "Item #1"

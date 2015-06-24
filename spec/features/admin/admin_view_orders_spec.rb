@@ -78,4 +78,16 @@ RSpec.describe 'Admin views orders', type: :feature do
     expect(page).to_not have_content("Tom Petty Dashboard")
     expect(page).to have_content("Whit Dashboard")
   end
+
+  it "can filter order by status" do
+    expect(current_path).to eq(admin_path)
+
+    click_on('Ordered')
+    expect(page).to have_text('Ordered', count: 1)
+    # expect(page).to_not have_content('Paid')
+    # expect(page).to_not have_content('Completed')
+    # expect(page).to_not have_content('Canceled')
+    # expect(page).to_not have_content('$25.05')
+    # expect(current_path).to eq('admin/orders/by-status')
+  end
 end

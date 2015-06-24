@@ -10,12 +10,20 @@
 </ul>
 <br>
 <table class="table table-hover table-bordered">
-  <tr>
-    <th>Ordered</th>
-    <th>Paid</th>
-    <th>Completed</th>
-    <th>Cancelled</th>
+  <tr class="order_status">
+    <th>
+      <button class="filter-btn" data-filter=".ordered">Ordered</button></th>
+    <th>
+      <button class="filter-btn" data-filter=".paid">Paid</button>
+    </th>
+    <th>
+      <button class="filter-btn" data-filter=".completed">Completed</button>
+    </th>
+    <th>
+      <button class="filter-btn" data-filter=".cancelled">Cancelled</button>
+    </th>
   </tr>
+
   <tr>
     <td><%= Order.all.number_ordered %></td>
     <td><%= Order.all.number_paid %></td>
@@ -29,7 +37,7 @@
 <div class="admin_orders_list">
   <div class="center_div">
     <h3>All Orders</h3>
-    <table class="table table-hover table-bordered">
+    <table class="table table-hover table-bordered mix-wrapper">
       <tr>
         <th>Order_id</th>
         <th>User_id</th>
@@ -39,9 +47,8 @@
         <th>Status</th>
         <th>Update Status</th>
       </tr>
-      <div class="orders">
         <% Order.all.each do |order| %>
-            <tr class="order" data-status="<%= order.status %>">
+            <tr class="mix-target <%= order.status %>">
               <td><%= link_to "#{order.id}", admin_order_path({id: order.id}) %></td>
               <td><%= order.user_id %></td>
               <td><%= to_dollars(order.subtotal) %></td>
@@ -57,7 +64,6 @@
                   <li><%= link_to "Completed", admin_order_update_path({order_id: order.id, status: "completed"}), method: "post" %></li>
                   <li><%= link_to "Cancelled", admin_order_update_path({order_id: order.id, status: "cancelled"}), method: "post" %></li>
                 </ul>
-              </div>
               </td>
             </tr>
         <% end %>

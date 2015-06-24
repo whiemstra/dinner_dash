@@ -1,8 +1,8 @@
-amber = Category.create(title: "Amber")
-blonde = Category.create(title: "Blonde")
-red = Category.create(title: "Red")
-brown = Category.create(title: "Brown")
-dark = Category.create(title: "Dark")
+amber = Category.find_or_create_by(title: "Amber")
+blonde = Category.find_or_create_by(title: "Blonde")
+red = Category.find_or_create_by(title: "Red")
+brown = Category.find_or_create_by(title: "Brown")
+dark = Category.find_or_create_by(title: "Dark")
 
 
 

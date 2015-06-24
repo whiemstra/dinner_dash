@@ -38,6 +38,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'mixitup_rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -47,7 +48,7 @@ group :development, :test do
   gem 'launchy'
   gem 'factory_girl_rails'
   gem 'shoulda-matchers'
-  gem 'mixitup_rails'
+
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
 

@@ -61,6 +61,7 @@ end
 group :production do
   gem 'pg'
   #gem 'figaro'
+  gem 'rails_12factor'
 end
 
 

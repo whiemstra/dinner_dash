@@ -41,12 +41,14 @@ GEM
     autoprefixer-rails (5.1.7)
       execjs
       json
-    aws-sdk (2.1.1)
-      aws-sdk-resources (= 2.1.1)
-    aws-sdk-core (2.1.1)
+    aws-sdk (2.0.48)
+      aws-sdk-resources (= 2.0.48)
+    aws-sdk-core (2.0.48)
+      builder (~> 3.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.1.1)
-      aws-sdk-core (= 2.1.1)
+      multi_json (~> 1.0)
+    aws-sdk-resources (2.0.48)
+      aws-sdk-core (= 2.0.48)
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -266,7 +268,7 @@ PLATFORMS
 
 DEPENDENCIES
   autoprefixer-rails
-  aws-sdk
+  aws-sdk (~> 2.0.0)
   bcrypt (~> 3.1.7)
   bootstrap-sass (~> 3.2.0)
   byebug

@@ -63,7 +63,7 @@ group :production do
   gem 'pg'
   #gem 'figaro'
   gem 'rails_12factor'
-  gem 'aws-sdk'
+  gem 'aws-sdk', '~> 2.0.0'
 end
 
 

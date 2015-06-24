@@ -71,11 +71,10 @@
                   <li><%= link_to "Completed", admin_order_update_path({order_id: order.id, status: "completed"}), method: "post" %></li>
                   <li><%= link_to "Cancelled", admin_order_update_path({order_id: order.id, status: "cancelled"}), method: "post" %></li>
                 </ul>
-              </td>
+              </div></td>
             </tr>
         <% end %>
-      </div>
     </table>
 
-      </div>
+  </div>
 </div>

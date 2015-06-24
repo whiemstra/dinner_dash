@@ -4,9 +4,9 @@ describe 'Admin', type: :feature do
 
   before(:each) do
     @admin = User.create(full_name: "Tom Petty",
-                          email: "petty@gmail.com",
-                          role: 1,
-                          password: "freefallin")
+                         email: "petty@gmail.com",
+                         role: 1,
+                         password: "freefallin")
     visit root_path
     click_on("Toggle navigation")
     find('.dropdown-menu').click
@@ -21,31 +21,27 @@ describe 'Admin', type: :feature do
     @item2 = Item.create!(title: "Item Title #2", description: "description for item #2 here", price: 500, categories: [category2])
   end
 
-  xit 'can retire an existing item' do
+  it 'can retire and then un-retire an existing item' do
     click_on "Items"
-    expect(page).to have_content("Item Title #1")
-
     click_link "Item Title #1"
+
+    expect(page).to have_content("< Back to All Items")
     expect(page).to have_button("Edit Item")
 
     click_on "Edit Item"
-
     expect(current_path).to eq(edit_admin_item_path(@item1))
+
     uncheck('Available?')
     click_on "Update"
 
-    expect(page).to have_text("Item Not Available")
-  end
+    expect(page).to have_no_content("Add to Cart")
 
-  xit 'can un-retire an existing item' do
-    click_on "Items"
-    click_link "Item Title #1"
     click_on "Edit Item"
-    uncheck('Available?')
+    check('Available?')
     click_on "Update"
-    # save_and_open_page
-    # expect(page).to have_css(".btn btn-error")
-    # button_labeled("Item Not Available", disabled: true)
-    # expect(page).to have_content("Item Not Available")
+
+    expect(page).to have_button("Add to Cart")
+
   end
+
 end

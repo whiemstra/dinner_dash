@@ -83,7 +83,7 @@ RSpec.describe 'Admin views orders', type: :feature do
     expect(current_path).to eq(admin_path)
 
     click_on('Ordered')
-    expect(page).to have_text('Ordered', count: 1)
+    expect(page).to have_text('Ordered', count: 2)
     # expect(page).to_not have_content('Paid')
     # expect(page).to_not have_content('Completed')
     # expect(page).to_not have_content('Canceled')

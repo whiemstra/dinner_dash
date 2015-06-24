@@ -41,6 +41,6 @@ Rails.application.routes.draw do
   get "admin/orders/status", to: "admin/orders#status"
   post "admin/order/update", to: "admin/orders#update"
 
-  get "admin/orders/by-status", to: "admin/orders#by-status"
+  # get "admin/orders/by-status", to: "admin/orders#by-status"
 
 end

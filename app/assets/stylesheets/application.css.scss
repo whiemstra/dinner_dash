@@ -124,7 +124,6 @@ p {
   color: white;
 }
 
-
 #individual-item {
   text-align: center;
   color: white;
@@ -133,9 +132,6 @@ p {
 #create-new-item {
   text-align: left;
   color: black;
-  //  background-color: rgba(255,255,255,0.5);
-  //  margin-left: 15%;
-  //  margin-right: 15%;
 }
 
 .field-button {
@@ -147,5 +143,22 @@ p {
   color: white;
 }
 
+.dashboard-header h1, h2, h3, h4, ul, li{
+  color:white;
+}
+
+.dashboard-header a {
+  color: lightgrey;
+  text-decoration: underline;
+}
+
+.table.table-hover.table-bordered {
+  background-color: white;
+}
+
+.table.table-hover.table-bordered a {
+  background-color: white;
+  color:black;
+}
 
 

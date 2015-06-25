@@ -103,3 +103,17 @@ body {
   border-color: rgba(255,255,255,0);
   margin-bottom: 75px;
 }
+
+.dashboard-header h1, h3, ul, li{
+  color:white;
+}
+
+.dashboard-header a {
+  color: lightgrey;
+  text-decoration: underline;
+}
+
+.table.table-hover.table-bordered {
+  background-color: white;
+}
+

@@ -1,30 +1,38 @@
-<%= form_for(@item, html: {multipart: true}) do |f| %>
-  <ul class="errors">
-    <% f.object.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-  </ul>
+<div id="create-new-item">
 
-  <%= f.label :title %>
-  <%= f.text_field :title %><br>
+  <%= form_for(@item, html: {multipart: true}) do |f| %>
+    <ul class="errors">
+      <% f.object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
 
-  <%= f.label :description %>
-  <%= f.text_area :description %><br>
+    <%#= f.label :title %>
+    <%= f.text_field :title, :placeholder => "Title" %><br>
+    <br>
 
-  <%= f.label :price %>
-  <%= f.text_field :price %><br>
+    <%#= f.label :description %>
+    <%= f.text_area :description, :placeholder => "Description" %><br>
+    <br>
 
-  <%= f.label :image, "Attach an Image" %> <br>
-  <%= f.file_field :image %> <br>
+    <%#= f.label :price %>
+    <%= f.text_field :price, :placeholder => "Price" %><br>
+    <br>
 
-  <%#= f.collection_check_boxes(:categories, :id, :name) %><br>
-  <%= f.label :status, 'Is Available?' %>
-  <%= f.check_box :status %>
-  <hr/>
+    <div class="field">
+      <%= f.label :image, "Attach an Image" %>
+      <%= f.file_field :image %> <br>
 
-  <%= f.label :category_ids, 'Category' %><br/>
-  <%= f.collection_check_boxes(:category_ids, Category.all, :id, :title) %>
-  <%# f.select :category_ids, Category.all.collect {|x| [x.title, x.id]}, {}, :multiple => true %>
+      <%= f.label :status, 'Is Available?' %>
+      <%= f.check_box :status %><br>
 
-  <%= f.submit %>
-<% end %>
+      <%= f.label :category_ids, 'Categories' %><br/>
+      <%= f.collection_check_boxes(:category_ids, Category.all, :id, :title) %><hr/>
+    </div>
+
+    <div class="field-button">
+      <%= f.submit %>
+    </div>
+
+  <% end %>
+</div>

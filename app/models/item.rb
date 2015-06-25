@@ -11,6 +11,12 @@ class Item < ActiveRecord::Base
   has_attached_file :image, :default_url => ':placeholder'
   validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
 
+  attr_reader :image_remote_url
+  def image_remote_url=(url)
+    self.image = URI.parse(url)
+    @image_remote_url = url
+  end
+
   validate :has_at_least_one_category
 
   scope :available, -> { where(status: true) }

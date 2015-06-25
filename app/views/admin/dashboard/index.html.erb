@@ -54,26 +54,26 @@
         <th>Status</th>
         <th>Update Status</th>
       </tr>
-      <% Order.all.each do |order| %>
-        <tr class="mix-target <%= order.status %>">
-          <td><%= link_to "#{order.id}", admin_order_path({id: order.id}) %></td>
-          <td><%= order.user_id %></td>
-          <td><%= to_dollars(order.subtotal) %></td>
-          <td><%= order.date_created %></td>
-          <td><%= order.date_updated %></td>
-          <td class="order_status"><%= order.status %></td>
-          <td><div class="btn-group">
-            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-              Update Status <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%= link_to "Paid", admin_order_update_path({order_id: order.id, status: "paid"}), method: :post %></li>
-              <li><%= link_to "Completed", admin_order_update_path({order_id: order.id, status: "completed"}), method: "post" %></li>
-              <li><%= link_to "Cancelled", admin_order_update_path({order_id: order.id, status: "cancelled"}), method: "post" %></li>
-            </ul>
-          </div></td>
-        </tr>
-      <% end %>
+        <% Order.all.each do |order| %>
+            <tr class="mix-target <%= order.status %>">
+              <td><%= link_to "#{order.id}", admin_order_path({id: order.id}) %></td>
+              <td><%= order.user_id %></td>
+              <td><%= to_dollars(order.subtotal) %></td>
+              <td><%= order.date_created %></td>
+              <td><%= order.date_updated %></td>
+              <td class="order_status"><%= order.status %></td>
+              <td><div class="btn-group">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                  Update Status <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Paid", admin_order_update_path({order_id: order.id, status: "paid"}), method: :post %></li>
+                  <li><%= link_to "Completed", admin_order_update_path({order_id: order.id, status: "completed"}), method: "post" %></li>
+                  <li><%= link_to "Cancelled", admin_order_update_path({order_id: order.id, status: "cancelled"}), method: "post" %></li>
+                </ul>
+              </div></td>
+            </tr>
+        <% end %>
     </table>
   </div>
 </div>

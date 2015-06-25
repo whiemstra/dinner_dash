@@ -1,18 +1,22 @@
 <h1> Create Your Account </h1>
 
-<%= form_for(@user) do |f| %>
-  <%= f.label :full_name, "Full Name" %>
-  <%= f.text_field :full_name %><br>
+<div id="create-new-user">
+  <%= form_for(@user) do |f| %>
 
-  <%= f.label :display_name, "Display Name" %>
-  <%= f.text_field :display_name %><br>
-
-  <%= f.label :email %>
-  <%= f.text_field :email %><br>
-
-  <%= f.label :password %>
-  <%= f.password_field :password %><br>
-
-  <%= f.submit "Create Account" %>
-<% end %>
-
+    <div class="field-user">
+      <%#= f.label :full_name, "Full Name" %>
+      <%= f.text_field :full_name, :placeholder => "Full Name" %><br>
+      <br>
+      <%#= f.label :display_name, "Display Name" %>
+      <%= f.text_field :display_name, :placeholder => "Display Name"  %><br>
+      <br>
+      <%#= f.label :email %>
+      <%= f.text_field :email, :placeholder => "Email"  %><br>
+      <br>
+      <%#= f.label :password %>
+      <%= f.password_field :password, :placeholder => "Password"  %><br>
+      <br>
+      <%= f.submit "Create Account" %>
+    </div>
+  <% end %>
+</div>
